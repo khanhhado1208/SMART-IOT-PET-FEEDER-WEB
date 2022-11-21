@@ -1,26 +1,26 @@
-// Module requires
+/* Module required */
 const express = require('express')
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const flash = require('connect-flash')
 const bodyParser = require("body-parser")
 const sessions = require('express-session')
 const passport = require('passport');
 const path = require('path')
-const app = express() /* Init express app */
-const mongoose = require('mongoose')
-const cookieParser = require('cookie-parser')
-const sessions = require('express-session')
-require('dotenv').config()
-app.set('view engine', 'ejs');
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
-
-app.use(express.static(__dirname));
-
-// Connect to MongoDB database
-mongoose.connect(process.env.DATABASE, () => {
-}, e => console.error(e))
 const User = require('./models/Users');
 const FeederSetup = require("./models/Feeder-setup")
+const app = express() /* Init express app */
+const mongoose = require('mongoose')
+require('dotenv').config() 
+
+/* connect to routes */
+const router = require('./routes/router') /* Connect to home router */
+
+/* Connect to MongoDB */
+mongoose.connect(process.env.DB_URI, () => {
+    console.log("MongoDB connected")
+}, e => console.error(e))
+
 
 /* Parse JSON Data */
 app.use(express.urlencoded({ extended: true }))
@@ -47,5 +47,5 @@ app.use('/register', router) /* Access to register page */
 
 /* Start the server */
 app.listen(process.env.PORT, () => {
-    console.log("Port " + process.env.PORT+" open");
+    console.log(`Server is running on port ` + process.env.PORT);
 });
