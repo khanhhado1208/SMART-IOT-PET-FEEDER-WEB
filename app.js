@@ -7,6 +7,8 @@ const bodyParser = require("body-parser")
 const sessions = require('express-session')
 const passport = require('passport');
 const path = require('path')
+const User = require('./models/Users');
+const FeederSetup = require("./models/Feeder-setup")
 const app = express() /* Init express app */
 const mongoose = require('mongoose')
 require('dotenv').config() 
