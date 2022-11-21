@@ -22,15 +22,6 @@ mongoose.connect(process.env.DATABASE, () => {
 const User = require('./models/Users');
 const FeederSetup = require("./models/Feeder-setup")
 
-// Sessions
-const session_length = 1800000 // half an hour
-app.use(sessions({
-    secret: "extremelyv3rymassivleyultrasecuresecretcode",
-    saveUninitialized:true,
-    cookie: { maxAge: session_length },
-    resave: false 
-}));
-
 /* Parse JSON Data */
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
