@@ -4,6 +4,8 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
 const bodyParser = require("body-parser")
+const sessions = require('express-session')
+const passport = require('passport');
 const path = require('path')
 const app = express() /* Init express app */
 const mongoose = require('mongoose')
@@ -22,15 +24,15 @@ mongoose.connect(process.env.DB_URI, () => {
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-/* Set Cookie Parser, Sessions & Flash */
-app.use(cookieParser('SecretStringForCookies'))
-app.use(session({
-    secret: 'SecretStringForCookies',
-    cookie: {maxAge: 60000},
-    resave: true,
-    saveUninitialized: true
-}))
-app.use(flash())
+/* Set Cookie Parser, Sessions */
+const session_length = 1800000 // half an hour
+app.use(sessions({
+    secret: "extremelyv3rymassivleyultrasecuresecretcode",
+    saveUninitialized:true,
+    cookie: { maxAge: session_length },
+    resave: false 
+}));
+app.use(cookieParser());
 
 /* Utilizing ejs template */
 app.set('view engine', 'ejs');
@@ -40,7 +42,7 @@ app.set('views', path.join(__dirname, 'views'))
 /* Handling routes request */
 app.use('/', router) /* Access to homepage */
 app.use('/register', router) /* Access to register page */
- 
+
 /* Start the server */
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ` + process.env.PORT);
