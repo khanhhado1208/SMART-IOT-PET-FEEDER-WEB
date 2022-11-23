@@ -6,12 +6,16 @@ module.exports = (function() {
     
     var session
 
-
+    //Get Dashboard page after logged in
+    router.get("/dashboard", (req,res)=>{
+        res.render("dashboard.ejs")
+    })
     // GET main page
     router.get("/", (req, res) => {
         session=req.session;
         if(session.userid){ // if there is an active session with userid
-            res.send("Hey there, welcome "+login+". <a href=\'/logout'>click to logout</a>")
+            //res.send("Hey there, welcome "+login+". <a href=\'/logout'>click to logout</a>")
+            res.render("dashboard.ejs")
         }else{
             res.render("home.ejs")
         }
@@ -25,7 +29,8 @@ module.exports = (function() {
             session=req.session
             session.userid=login
             console.log("Session: "+req.session)
-            res.send("Hey there, welcome "+login+". <a href=\'/logout'>click to logout</a>")
+            // res.send("Hey there, welcome "+login+". <a href=\'/logout'>click to logout</a>")
+            res.render("dashboard.ejs", { username: login})
         }else{
             res.send('Invalid username or password')
         }
