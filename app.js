@@ -22,6 +22,7 @@ mongoose.connect(process.env.DB_URI, () => {
 /* Parse JSON Data */
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use('/public/', express.static('./public'));
 
 /* Set Cookie Parser, Sessions */
 const session_length = 1800000 // half an hour
@@ -35,7 +36,9 @@ app.use(cookieParser());
 
 /* Utilizing ejs template */
 app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'views')))
+var publicDir = require('path').join(__dirname,'/views'); 
+app.use(express.static(publicDir)); 
 app.set('views', path.join(__dirname, 'views'))
 
 /* Handling routes request */

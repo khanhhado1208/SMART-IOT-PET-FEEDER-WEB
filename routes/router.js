@@ -5,7 +5,6 @@ module.exports = (function() {
     const User = require('../models/Users')
     
     var session
-  
     // GET main page
     router.get("/", (req, res) => {
         session=req.session;
@@ -65,7 +64,7 @@ module.exports = (function() {
 
     /**
      * @function Authorizer
-     * @parameters recieves the username and password from login form
+     * @parameters receives the username and password from login form
      * @description finds if username with given password exists in database
      * @return username or null
      **/

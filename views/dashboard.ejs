@@ -7,102 +7,46 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
-      @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
-body {
-	margin: 0;
-	background: #222;
-	font-family: 'Work Sans', sans-serif;
-	font-weight: 800;
-  color: #d76d6d;
-}
-
-.container {
-	width: 80%;
-	margin: 0 auto;
-}
-
-header {
-  background:  #9a616d;;
-}
-
-header::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
-.logo {
-  float: left;
-  padding: 10px 0;
-  color:aliceblue;
-  border-style: outset;
-}
-
-nav {
-  float: right;
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-nav li {
-  display: inline-block;
-  margin-left: 70px;
-  padding-top: 23px;
-
-  position: relative;
-}
-
-nav a {
-  color: #f5f5f5;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 14px;
-}
-
-nav a:hover {
-  color: #000;
-}
-
-nav a::before {
-  content: '';
-  display: block;
-  height: 5px;
-  background-color: #444;
-
-  position: absolute;
-  top: 0;
-  width: 0%;
-
-  transition: all ease-in-out 250ms;
-}
-
-nav a:hover::before {
-  width: 100%;
-}
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<header>
-  <div class="container">
-    <h1 class="logo">HANDAJUN</h1>
-    <nav>
+<div class="hero">
+  <nav>
+      <img src="photos/logo1.png" class="logo">
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Set up meal</a></li>
-        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About us</a></li>
       </ul>
-    </nav>
+      <img src="photos/avatar.png" class="user-pic" onclick="toggleMenu()">
+
+      <div class="sub-menu-wrap" id="subMenu">
+          <div class="sub-menu">
+              <div class="user-info">
+                  <img src="photos/avatar.png">
+                  <h3>Hi <%= username %></h3>
+              </div>
+              <hr>
+              <a href="#" class="sub-menu-link">
+                  <img src="photos/setting.png">
+                  <p>Setting</p>
+              </a>
+              <a href="/logout" class="sub-menu-link">
+                  <img src="photos/logout.png">
+                  <p>Logout</p>
+              </a>
+          </div>
+      </div>
+  </nav>
+  <div class="container">
+    <h1>Hello <%= username %> <span class="wave">👋</span></h1>
+    <h2>Welcome to HANDAJUN Application. You can choose set up meal or feed now for your pet</h2>
   </div>
-</header>
-<div class="container">
-  <h1>Hello <%= username %></h1>
-  <h2>Welcome to HANDAJUN Application. You can choose set up meal for your pet</h2>
 </div>
-  
+
+<script>
+  let subMenu = document.getElementById("subMenu")
+  function toggleMenu(){
+      subMenu.classList.toggle("open-menu")
+  }
+</script>
 </body>
 </html>
