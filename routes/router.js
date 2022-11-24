@@ -5,11 +5,6 @@ module.exports = (function() {
     const User = require('../models/Users')
     
     var session
-
-    //Get Dashboard page after logged in
-    router.get("/dashboard", (req,res)=>{
-        res.render("dashboard.ejs")
-    })
     // GET main page
     router.get("/", (req, res) => {
         session=req.session;
@@ -69,7 +64,7 @@ module.exports = (function() {
 
     /**
      * @function Authorizer
-     * @parameters recieves the username and password from login form
+     * @parameters receives the username and password from login form
      * @description finds if username with given password exists in database
      * @return username or null
      **/
