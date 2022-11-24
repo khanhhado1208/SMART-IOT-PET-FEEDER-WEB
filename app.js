@@ -47,5 +47,5 @@ app.use('/register', router) /* Access to register page */
 
 /* Start the server */
 app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ` + process.env.PORT);
+    console.log("Port " + process.env.PORT + " open");
 });
