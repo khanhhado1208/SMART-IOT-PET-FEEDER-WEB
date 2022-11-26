@@ -1,133 +1,296 @@
-*{margin: 0;
+*{
+   margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     box-sizing:border-box;
-    }
-    .hero{
-        width: 100%;
-        min-height: 100vh;
-        background: #eceaff;
-        color: #525252;
-        font-size: 30px;
-    }
-    nav{
-        background: #9a616d;
-        width: 100%;
-        padding: 10px 10%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-    }
-    .logo{
-    width: 200px;
+}
+.hero{
+    width: 100%;
+    min-height: 100vh;
+    background: #F8FFE3;
+    color: #1D3557;
+    font-size: 30px;
+}
+header{
+  position: fixed;
+  width: 100%;
+}
+nav{
+    background: #E63946;
+    width: 100%;
+    padding: 5px 5% 5px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.logo{
+    width: 120px;
     border-style: outset;
-    }
-    .user-pic{
+}
+.user-pic{
     width: 40px;
     border-radius: 50%;
     cursor: pointer;
     margin-left: 30px;
-    }
-    nav ul{
-        width: 100%;
-        text-align: right;
-    }
-    nav ul li {
-        display: inline-block;
-        list-style: none;
-        margin: 10px 20px;
-    }
-    nav ul li a {
-        color: #fff;
-        text-decoration: none;
-    }
-    .sub-menu-wrap{
-        position: absolute;
-        top: 100%;
-        right: 10%;
-        width: 320px;
-        max-height: 0px;
-        overflow: hidden;
-        transition: max-height 0.5s;
-    }
-    .sub-menu-wrap.open-menu{
-        max-height: 400px;
-        
-    }
-    .sub-menu{
-        background:#fff;
-        padding: 20px;
-        margin: 10px
-    }
-    .user-info{
-        display: flex;
-        align-items: center;
-    }
-    .user-info h3{
-        font-weight: 500;
-    }
-    .user-info img{
+}
+nav ul{
+    width: 100%;
+    text-align: right;
+    margin-bottom: 0px;
+}
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+nav ul li a {
+    color: #F1FAEE;
+    text-decoration: none;
+}
+.sub-menu-wrap{
+    position: absolute;
+    top: 100%;
+    right: 3%;
+    width: 320px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.7s;
+}
+.sub-menu-wrap.open-menu{
+    max-height: 400px;
+}
+.sub-menu{
+    background:#A8DADC;
+    padding: 20px;
+    padding-bottom: 8px;
+    margin: 10px;
+    border: 1px solid #E63946;
+    border-radius: 15px;
+}
+.user-info{
+    display: flex;
+    align-items: center;
+}
+.user-info h3{
+    font-weight: 500;
+}
+.user-info img{
     width: 60px;
     border-radius: 50%;
     margin-right: 15px;
-    }
-    .sub-menu hr{
-        border: 0;
-        height: 1px;
-        width: 100%;
-        background: #ccc;
-        margin: 15px 0 10px;
-    }
-    .sub-menu-link{
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: #525252;
-        margin: 12px 0;
-    }
-    .sub-menu-link p{
-       width: 100%;
-    }
-    .sub-menu-link img{
-        width: 40px;
-        background: #e5e5e5;
-        border-radius: 50%;
-        padding:8px;
-        margin-right: 15px;
-     }
-     .sub-menu-link span{
-        font-size: 22px;
-        transition: transform 0.5s;
-     }
-     
-     .sub-menu-link:hover span{
-        transform: translateX(5px);
-     }
-     .sub-menu-link:hover p{
-        font-weight: 600;
-     }
-
-     .wave {
-        animation-name: wave-animation;  /* Refers to the name of your @keyframes element below */
-        animation-duration: 2.5s;        /* Change to speed up or slow down */
-        animation-iteration-count: infinite;  /* Never stop waving :) */
-        transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
-        display: inline-block;
-      }
-      
-      @keyframes wave-animation {
-          0% { transform: rotate( 0.0deg) }
-         10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
-         20% { transform: rotate(-8.0deg) }
-         30% { transform: rotate(14.0deg) }
-         40% { transform: rotate(-4.0deg) }
-         50% { transform: rotate(10.0deg) }
-         60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
-        100% { transform: rotate( 0.0deg) }
-      }
-.container{
+}
+.sub-menu hr{
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #E63946;
+    margin: 15px 0 10px;
+}
+.sub-menu-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #1D3557;
+    margin: 12px 0;
+}
+.sub-menu-link p{
+    width: 100%;
+}
+.sub-menu-link img{
+    width: 40px;
+    background: #F1FAEE;
+    border-radius: 50%;
+    padding:8px;
+    margin-right: 15px;
+}
+.sub-menu-link span{
+    font-size: 22px;
+    transition: transform 0.5s;
+}
+.sub-menu-link:hover span{
+    transform: translateX(5px);
+}
+.sub-menu-link:hover p{
+    font-weight: 600;
+}
+h1{
+    font-weight: bold;
+    font-size: 30px;
+}
+h2{
+    font-size: 21px;
+}
+h3{
+    font-weight: bold;
+    font-size: 21px;
+    margin-top: 5px;
+}
+h4{
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+.vl {
+ border-left: 3px solid #E63946;
+ height: auto;
+}
+.vl2 {
+  border-right: 1px solid #E63946;
+  padding-left: 3px;
+  height: auto;
+}
+.vl3 {
+  border-left: 3px solid #E63946;
+  height: auto;
+}
+.vl4 {
+   border-right: 1px solid #E63946;
+   padding-left: 3px;
+   height: auto;
+ }
+p{
+    display: inline-block;
+    margin: 0px;
+    font-size: 15px;
+}
+footer{
+  margin-top: 5px;
     text-align: center;
-  text-transform: uppercase;
-  color: #4CAF50;
+    font-size: 12px;
+}
+.status{
+  margin-left: 17%;
+
+}
+#logofooter{
+    width: 100px;
+}
+.btn-primary{
+  background-color: #E63946;
+  border-color: #8c1822;
+  border-width: 1px;
+  color: #1D3557;
+  width: 85px;
+}
+.btn-primary:hover{
+  background-color: #E63946;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  font-weight: bold;
+  color: #1D3557;
+}
+.btn-primary:focus{
+  background-color: #E63946;
+  color: #1D3557;
+  animation-name: buttonpress;
+  animation-duration: 0.5s;
+}
+@keyframes buttonpress {
+  0%{
+     box-shadow: 0px 0px  #1D3557
+  }
+  50%{
+     box-shadow: 30px 0px  #1D3557
+  }
+  100%{
+     box-shadow: 0px 0px  #1D3557
+  }
+
+}
+.btn-primary:active:focus{
+  background-color: #E63946;
+  color: #1D3557;
+}
+.btn-secondary{
+    margin-right: 1px;
+    border-color: #8c1822;
+    border-width: 1px;
+}
+.btn-secondary.active{
+    border-color: #8c1822;
+    border-width: 1px;
+    font-weight: bold;
+    background-color: #E63946;
+}
+.btn-secondary.focus{
+    color: black;
+}
+.btn-secondary:hover{
+    color: black;
+}
+#main{
+    text-align: left;
+}
+.wave {
+    animation-name: wave-animation;
+   /* Refers to the name of your @keyframes element below */
+    animation-duration: 2.5s;
+   /* Change to speed up or slow down */
+    animation-iteration-count: infinite;
+   /* Never stop waving :) */
+    transform-origin: 70% 70%;
+   /* Pivot around the bottom-left palm */
+    display: inline-block;
+}
+.section{
+    background-color: #F1FAEE;
+    border-color: #E63946;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 1px;
+    text-align: left;
+}
+hr{
+    border-top: 1px solid #E63946;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.row {
+  display: flex;
+}
+
+.column {
+  padding-bottom: 5px;
+  flex: 50%;
+  margin-left: 15px;
+}
+@keyframes wave-animation {
+    0% {
+        transform: rotate( 0.0deg) 
+   }10% {
+      transform: rotate(14.0deg) 
+   }/* The following five values can be played with to make the waving more or less extreme */
+   20% {
+      transform: rotate(-8.0deg) 
+   }30% {
+      transform: rotate(14.0deg) 
+   }
+   40% {
+      transform: rotate(-4.0deg) 
+   }
+   50% {
+      transform: rotate(10.0deg) 
+   }
+   60% {
+      transform: rotate( 0.0deg) 
+   }
+   /* Reset for the last half to pause */
+   100% {
+      transform: rotate( 0.0deg) 
+   }
+}
+.container{
+  padding-top: 75px;
+  border-style: solid;
+  border-color: #E63946;
+  border-width: 1px;
+  border-top: none;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  text-align: center;
+  color: #1D3557;
+  background-color: #A8DADC;
 }
