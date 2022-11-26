@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>HANDAJUN DEVICE</title>
+    <title>Handajun pet feeder</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -9,44 +9,174 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<div class="hero">
-  <nav>
-      <img src="photos/logo1.png" class="logo">
-      <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About us</a></li>
-      </ul>
-      <img src="photos/avatar.png" class="user-pic" onclick="toggleMenu()">
+<body>
+  <div class="hero">
+    <header>
+      <nav>
+        <img src="photos/logo.png" class="logo">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+        </ul>
+        <img src="photos/avatar.png" class="user-pic" onclick="toggleMenu()">
+  
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img src="photos/avatar.png">
+                    <h5><%= username %></h5>
+                </div>
+                <hr>
+                <a href="#" class="sub-menu-link">
+                    <img src="photos/setting.png">
+                    <p>Setting</p>
+                </a>
+                <a href="/logout" class="sub-menu-link">
+                    <img src="photos/logout.png">
+                    <p>Logout</p>
+                </a>
+            </div>
+        </div>
+      </nav>
+    </header>
 
-      <div class="sub-menu-wrap" id="subMenu">
-          <div class="sub-menu">
-              <div class="user-info">
-                  <img src="photos/avatar.png">
-                  <h3>Hi <%= username %></h3>
+    <div class="container">
+      <h1>Hello <%= username %> <span class="wave">👋</span></h1>
+      <h2>Welcome to the Handajun™ pet feeder control panel. Here you can set up a feeding routine for your pet.</h2>
+
+      <div id="main">      
+        <div class="section">
+          <h3>Feeder control</h3>
+          <div class="row">
+            <div class="column">
+              <h4>Power</h4>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-secondary active">
+                    <input type="radio" name="power" id="option1" autocomplete="off" value="no"/> Off
+                  </label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="power" id="option2" autocomplete="off" value="yes"/> On
+                  </label>
+                </div>
+            </div>
+            <div class="column">
+              <div id="collapse" class="panel-collapse collapse">
+                <h4>Mode</h4>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="mode" id="option1" autocomplete="off" value="auto"> Auto
+                  </label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="mode" id="option2" autocomplete="off" value="scheduled"> Scheduled
+                  </label>
+                </div>
               </div>
-              <hr>
-              <a href="#" class="sub-menu-link">
-                  <img src="photos/setting.png">
-                  <p>Setting</p>
-              </a>
-              <a href="/logout" class="sub-menu-link">
-                  <img src="photos/logout.png">
-                  <p>Logout</p>
-              </a>
+            </div>
           </div>
-      </div>
-  </nav>
-  <div class="container">
-    <h1>Hello <%= username %> <span class="wave">👋</span></h1>
-    <h2>Welcome to HANDAJUN Application. You can choose set up meal or feed now for your pet</h2>
-  </div>
-</div>
+          </div>
+        </div>
+          
+        <script>
+          $('[name="power"]').on('change', function(){  
+          if($(this).val()  === "yes"){
+            $('#collapse').collapse('show')
+          }else{
+            $('#collapse').collapse('hide')
+          }
+          });
+        </script>
 
-<script>
-  let subMenu = document.getElementById("subMenu")
-  function toggleMenu(){
-      subMenu.classList.toggle("open-menu")
-  }
-</script>
+        <div id="collapseMode" class="panel-collapse collapse">
+          <div class="section">
+            <h3>Feeding setup</h3>
+
+            <p>Feeding per day</p><br>
+            <p>Feeding times</p><br>
+            <p>Portion size</p>
+          </div>
+        </div>
+
+        <script>
+          $('[name="mode"]').on('change', function(){  
+          if($(this).val()  === "scheduled"){
+            $('#collapseMode').collapse('show')
+          }else{
+            $('#collapseMode').collapse('hide')
+          }
+          });
+        </script>
+
+        <div class="section">
+          <h3>Monitoring</h3>
+          <div class="row">
+            <div class="column">
+              <h4>Bowl status:</h4>
+              <div class="status">
+                <div class="row">
+                  <div class="column">
+                    <p>Food: </p>
+                  </div>
+                  <div class="column">
+                    <button type="submit" class="btn btn-primary">Fill now</button>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="column">
+                    <p>Water: </p>
+                  </div>
+                  <div class="column">
+                    <button type="submit" class="btn btn-primary">Fill now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="vl"></div>
+            <div class="vl2"></div> 
+            <div class="column">
+              <h4>Feeder status:</h4>
+              <div class="status">
+                <div class="row">
+                  <div class="column">
+                    <p>Food:</p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="column">
+                    <p>Water:</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!--main content-->
+
+
+      <footer>
+        <img src="photos/logo.png" id="logofooter"><br>
+        Copyright © 2022 Daniel Radvanyi, Ha Do, Anatoliy Rubanenko, Shen Jun, Haque Imtiazul
+      </footer>
+
+    </div> <!--container-->
+  </div> <!--hero-->
+
+
+  <script>
+    let subMenu = document.getElementById("subMenu")
+    function toggleMenu(){
+        subMenu.classList.toggle("open-menu")
+    }
+  </script>
 </body>
 </html>
+
+
+<!--TODO
+favicon
+logo fix
+add content
+collapse
+
+-->
