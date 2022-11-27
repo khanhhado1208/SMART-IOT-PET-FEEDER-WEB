@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Handajun pet feeder</title>
+    <title>Handajun™ pet feeder</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,7 +15,7 @@
       <nav>
         <img src="photos/logo.png" class="logo">
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="#" id="currentPage">Home</a></li>
             <li><a href="#">About us</a></li>
         </ul>
         <img src="photos/avatar.png" class="user-pic" onclick="toggleMenu()">
@@ -61,12 +61,12 @@
             </div>
             <div class="column">
               <div id="collapse" class="panel-collapse collapse">
-                <h4>Mode</h4>
+                <h4>Mode<img src="photos/info.png" class="info"></h4>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-secondary">
+                  <label class="btn btn-secondary" id="modebtn1">
                     <input type="radio" name="mode" id="option1" autocomplete="off" value="auto"> Auto
                   </label>
-                  <label class="btn btn-secondary">
+                  <label class="btn btn-secondary" id="modebtn2">
                     <input type="radio" name="mode" id="option2" autocomplete="off" value="scheduled"> Scheduled
                   </label>
                 </div>
@@ -82,6 +82,11 @@
             $('#collapse').collapse('show')
           }else{
             $('#collapse').collapse('hide')
+            $('#collapseMode').collapse('hide')
+            
+            // set mode buttons as inactive if device is shut off
+            document.getElementById("modebtn1").classList.remove("active");
+            document.getElementById("modebtn2").classList.remove("active");
           }
           });
         </script>

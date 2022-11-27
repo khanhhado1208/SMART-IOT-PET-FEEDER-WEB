@@ -18,15 +18,14 @@ header{
 nav{
     background: #E63946;
     width: 100%;
-    padding: 5px 5% 5px 5%;
+    padding: 5px 7.5% 5px 8%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: relative;
 }
 .logo{
-    width: 120px;
-    border-style: outset;
+    height: 80px;
 }
 .user-pic{
     width: 40px;
@@ -42,11 +41,25 @@ nav ul{
 nav ul li {
     display: inline-block;
     list-style: none;
-    margin: 10px 20px;
+    margin: 5px 10px;
 }
 nav ul li a {
-    color: #F1FAEE;
+    color: #1D3557;
     text-decoration: none;
+    width: 130px;
+    display: inline-block;
+}
+nav ul li a:hover {
+    color: #1D3557;
+    font-weight: bold;
+    text-decoration: none;
+}
+nav ul li a:focus {
+    color: #1D3557;
+    text-decoration: none;
+}
+#currentPage{
+    font-weight: bold;
 }
 .sub-menu-wrap{
     position: absolute;
@@ -139,15 +152,6 @@ h4{
   padding-left: 3px;
   height: auto;
 }
-.vl3 {
-  border-left: 3px solid #E63946;
-  height: auto;
-}
-.vl4 {
-   border-right: 1px solid #E63946;
-   padding-left: 3px;
-   height: auto;
- }
 p{
     display: inline-block;
     margin: 0px;
@@ -251,11 +255,19 @@ hr{
 .row {
   display: flex;
 }
-
 .column {
   padding-bottom: 5px;
   flex: 50%;
   margin-left: 15px;
+}
+.info{
+    margin-left: 3px;
+    margin-bottom: 7px;
+    width: 11px;
+}
+.info:hover{
+    width: 13px;
+    margin-bottom: 5px;
 }
 @keyframes wave-animation {
     0% {
@@ -283,7 +295,7 @@ hr{
    }
 }
 .container{
-  padding-top: 75px;
+  padding-top: 80px;
   border-style: solid;
   border-color: #E63946;
   border-width: 1px;
