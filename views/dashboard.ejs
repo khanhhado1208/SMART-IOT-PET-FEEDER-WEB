@@ -61,7 +61,17 @@
             </div>
             <div class="column">
               <div id="collapse" class="panel-collapse collapse">
+
+                <h4>Mode<img src="photos/info.png" class="info" onclick="showOrHide()" id="showInfo"></h4>
+                <div id="infoMachine">
+                  You can configure the pet feeder in two ways. You can choose one of these options to feed your pet. 
+                  Auto mode will be used to automatically refill the bowl, while schedule mode will be used to manually set it up.
+                </div>
+                <!-- <img src="photos/infoMachine.jpg" id="infoMachine"> -->
+
+
                 <h4>Mode<img src="photos/info.png" class="info"></h4>
+
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                   <label class="btn btn-secondary" id="modebtn1">
                     <input type="radio" name="mode" id="option1" autocomplete="off" value="auto"> Auto
@@ -73,6 +83,35 @@
               </div>
             </div>
           </div>
+
+          </div>
+        </div>
+          
+        <script>
+          $('[name="power"]').on('change', function(){  
+          if($(this).val()  === "yes"){
+            $('#collapse').collapse('show')
+          }else{
+            $('#collapse').collapse('hide')
+            $('#collapseMode').collapse('hide')
+            
+            // set mode buttons as inactive if device is shut off
+            document.getElementById("modebtn1").classList.remove("active");
+            document.getElementById("modebtn2").classList.remove("active");
+          }
+          });
+        </script>
+
+        <div id="collapseMode" class="panel-collapse collapse">
+          <div class="section">
+            <h3>Feeding setup</h3>
+
+            <p>Feeding per day</p><br>
+            <p>Feeding times</p><br>
+            <p>Portion size</p>
+          </div>
+        </div>
+
           </div>
         </div>
           
@@ -151,6 +190,8 @@
           }
           });
 
+
+
           //script for revealing feeding time options
           $('.collapse1').addClass('collapse');
 
@@ -182,6 +223,7 @@
 
               //$('#collapse1').collapse('show');
           });
+
 
         </script>
 
@@ -248,8 +290,28 @@
         subMenu.classList.toggle("open-menu")
     }
   </script>
+
+ <script>
+const divInfo = document.querySelector('#infoMachine')
+let isClick = true;
+let showOrHide = function(){
+  if(isClick){
+    divInfo.style.display = 'block'
+    isClick = false
+  }else{
+    divInfo.style.display = 'none'
+    isClick = true
+  }
+  
+}
+ </script>
 </body>
 </html>
+
+
+</body>
+</html>
+
 
 
 <!--TODO
@@ -258,4 +320,3 @@ logo fix
 add content
 collapse
 
--->
