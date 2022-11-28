@@ -61,12 +61,16 @@
             </div>
             <div class="column">
               <div id="collapse" class="panel-collapse collapse">
+
                 <h4>Mode<img src="photos/info.png" class="info" onclick="showOrHide()" id="showInfo"></h4>
                 <div id="infoMachine">
                   You can configure the pet feeder in two ways. You can choose one of these options to feed your pet. 
                   Auto mode will be used to automatically refill the bowl, while schedule mode will be used to manually set it up.
                 </div>
                 <!-- <img src="photos/infoMachine.jpg" id="infoMachine"> -->
+
+
+                <h4>Mode<img src="photos/info.png" class="info"></h4>
 
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                   <label class="btn btn-secondary" id="modebtn1">
@@ -79,6 +83,7 @@
               </div>
             </div>
           </div>
+
           </div>
         </div>
           
@@ -107,6 +112,75 @@
           </div>
         </div>
 
+          </div>
+        </div>
+          
+        <script>
+          $('[name="power"]').on('change', function(){  
+          if($(this).val()  === "yes"){
+            $('#collapse').collapse('show')
+          }else{
+            $('#collapse').collapse('hide')
+            $('#collapseMode').collapse('hide')
+            
+            // set mode buttons as inactive if device is shut off
+            document.getElementById("modebtn1").classList.remove("active");
+            document.getElementById("modebtn2").classList.remove("active");
+          }
+          });
+        </script>
+
+        <div id="collapseMode" class="panel-collapse collapse">
+          <div class="section">
+            <h3>Feeding setup</h3>
+
+            <form action="/schedule" method="post">
+              <label class="form-label" id="perday" name="perday" required>Feeding per day:</label>
+              <select class="form-select" id="perselector" autocomplete="off">
+                <option selected="selected" id="selected" value="none">Choose</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+
+              <hr>
+
+              <div class="row" id="timeinput">
+                <div class="column">
+                  <div id="collapse1" class="panel-collapse collapse">
+                    <label class="form-label">Select first feeding time</label>
+                    <input type="time" id="first" class="clock" autocomplete="off">
+                  </div>
+                </div>
+                <div class="column">
+                  <div id="collapse2" class="panel-collapse collapse">
+                    <label class="form-label">Select second feeding time</label>
+                    <input type="time" id="second" class="clock" autocomplete="off">
+                  </div>
+                </div>
+                <div class="column">
+                  <div id="collapse3" class="panel-collapse collapse">
+                    <label class="form-label">Select third feeding time</label>
+                    <input type="time" id="third" class="clock" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <hr id="separator" class="panel-collapse collapse">
+              <label class="form-label" id="size" name="size" required>Portion size:</label>
+              <select class="form-select">
+                <option selected id="selected" autocomplete="off">Choose</option>
+                <option value="1">Small</option>
+                <option value="2">Medium</option>
+                <option value="3">Large</option>
+              </select>
+
+              <button class="btn btn-dark btn-lg btn-block" id="button" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+
         <script>
           $('[name="mode"]').on('change', function(){  
           if($(this).val()  === "scheduled"){
@@ -115,6 +189,42 @@
             $('#collapseMode').collapse('hide')
           }
           });
+
+
+
+          //script for revealing feeding time options
+          $('.collapse1').addClass('collapse');
+
+          $('#perselector').change(function(){
+              //hide all elements
+              var selector = '#collapse' + $(this).val();
+              if($(this).val()==="none"){
+                $("#collapse1").collapse('hide');
+                $("#collapse2").collapse('hide');
+                $("#collapse3").collapse('hide');
+                $("#separator").collapse('hide');
+              }else if($(this).val()==="1"){
+                $("#collapse1").collapse('show');
+                $("#collapse2").collapse('hide');
+                $("#collapse3").collapse('hide');
+                $("#separator").collapse('show');
+              }else if($(this).val()==="2"){
+                $("#collapse1").collapse('show');
+                $("#collapse2").collapse('show');
+                $("#collapse3").collapse('hide');
+                $("#separator").collapse('show');
+              }else if($(this).val()==="3"){
+                $("#collapse1").collapse('show');
+                $("#collapse2").collapse('show');
+                $("#collapse3").collapse('show');
+                $("#separator").collapse('show');
+              }
+             // $('#collapse1').collapse('hide');
+
+              //$('#collapse1').collapse('show');
+          });
+
+
         </script>
 
         <div class="section">
@@ -180,6 +290,7 @@
         subMenu.classList.toggle("open-menu")
     }
   </script>
+
  <script>
 const divInfo = document.querySelector('#infoMachine')
 let isClick = true;
@@ -197,10 +308,15 @@ let showOrHide = function(){
 </body>
 </html>
 
+
+</body>
+</html>
+
+
+
 <!--TODO
 favicon
 logo fix
 add content
 collapse
 
--->
