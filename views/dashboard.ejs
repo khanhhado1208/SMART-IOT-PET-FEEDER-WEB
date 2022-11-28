@@ -95,9 +95,50 @@
           <div class="section">
             <h3>Feeding setup</h3>
 
-            <p>Feeding per day</p><br>
-            <p>Feeding times</p><br>
-            <p>Portion size</p>
+            <form action="/schedule" method="post">
+              <label class="form-label" id="perday" name="perday" required>Feeding per day:</label>
+              <select class="form-select" id="perselector" autocomplete="off">
+                <option selected="selected" id="selected" value="none">Choose</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+
+              <hr>
+
+              <div class="row" id="timeinput">
+                <div class="column">
+                  <div id="collapse1" class="panel-collapse collapse">
+                    <label class="form-label">Select first feeding time</label>
+                    <input type="time" id="first" class="clock" autocomplete="off">
+                  </div>
+                </div>
+                <div class="column">
+                  <div id="collapse2" class="panel-collapse collapse">
+                    <label class="form-label">Select second feeding time</label>
+                    <input type="time" id="second" class="clock" autocomplete="off">
+                  </div>
+                </div>
+                <div class="column">
+                  <div id="collapse3" class="panel-collapse collapse">
+                    <label class="form-label">Select third feeding time</label>
+                    <input type="time" id="third" class="clock" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <hr id="separator" class="panel-collapse collapse">
+              <label class="form-label" id="size" name="size" required>Portion size:</label>
+              <select class="form-select">
+                <option selected id="selected" autocomplete="off">Choose</option>
+                <option value="1">Small</option>
+                <option value="2">Medium</option>
+                <option value="3">Large</option>
+              </select>
+
+              <button class="btn btn-dark btn-lg btn-block" id="button" type="submit">
+                Submit
+              </button>
+            </form>
           </div>
         </div>
 
@@ -109,6 +150,39 @@
             $('#collapseMode').collapse('hide')
           }
           });
+
+          //script for revealing feeding time options
+          $('.collapse1').addClass('collapse');
+
+          $('#perselector').change(function(){
+              //hide all elements
+              var selector = '#collapse' + $(this).val();
+              if($(this).val()==="none"){
+                $("#collapse1").collapse('hide');
+                $("#collapse2").collapse('hide');
+                $("#collapse3").collapse('hide');
+                $("#separator").collapse('hide');
+              }else if($(this).val()==="1"){
+                $("#collapse1").collapse('show');
+                $("#collapse2").collapse('hide');
+                $("#collapse3").collapse('hide');
+                $("#separator").collapse('show');
+              }else if($(this).val()==="2"){
+                $("#collapse1").collapse('show');
+                $("#collapse2").collapse('show');
+                $("#collapse3").collapse('hide');
+                $("#separator").collapse('show');
+              }else if($(this).val()==="3"){
+                $("#collapse1").collapse('show');
+                $("#collapse2").collapse('show');
+                $("#collapse3").collapse('show');
+                $("#separator").collapse('show');
+              }
+             // $('#collapse1').collapse('hide');
+
+              //$('#collapse1').collapse('show');
+          });
+
         </script>
 
         <div class="section">

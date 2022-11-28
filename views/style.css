@@ -24,6 +24,21 @@ nav{
     justify-content: space-between;
     position: relative;
 }
+.clock{
+  width: 13.5ch;
+  border: 1px solid hsla(215, 50%, 23%, 0.499);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 17px;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.clock:focus{
+    border-color: #E63946;
+    border-width: 2px;
+    }
 .logo{
     height: 80px;
 }
@@ -187,6 +202,36 @@ footer{
   color: #1D3557;
   animation-name: buttonpress;
   animation-duration: 0.5s;
+}
+.form-label{
+    font-size: 17px;
+}
+.form-select{
+  width: 100%;
+  min-width: 10ch;
+  max-width: 12ch;
+  border: 1px solid hsla(215, 50%, 23%, 0.499);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 17px;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.form-select:focus{
+border-color: #E63946;
+border-width: 2px;
+}
+#selected{
+    background-color: rgb(226, 226, 226);
+}
+#button{
+    color: #F1FAEE;
+    background-color: #1D3557;
+}
+#timeinput{
+    margin-right: 30%;
 }
 @keyframes buttonpress {
   0%{
