@@ -298,12 +298,11 @@ hr{
     margin-bottom: 7px;
     width: 11px;
 }
-
 .info img{
     width: 500px;
     border-radius: 50%;
     margin-right: 15px;
-
+}
 .form-label{
     font-size: 17px;
 }
@@ -328,83 +327,12 @@ border-width: 2px;
     background-color: rgb(226, 226, 226);
 }
 #button{
+    margin-top: 15px;
     color: #F1FAEE;
     background-color: #1D3557;
 }
 #timeinput{
     margin-right: 30%;
-}
-@keyframes buttonpress {
-  0%{
-     box-shadow: 0px 0px  #1D3557
-  }
-  50%{
-     box-shadow: 30px 0px  #1D3557
-  }
-  100%{
-     box-shadow: 0px 0px  #1D3557
-  }
-
-}
-.btn-primary:active:focus{
-  background-color: #E63946;
-  color: #1D3557;
-}
-.btn-secondary{
-    margin-right: 1px;
-    border-color: #8c1822;
-    border-width: 1px;
-}
-.btn-secondary.active{
-    border-color: #8c1822;
-    border-width: 1px;
-    font-weight: bold;
-    background-color: #E63946;
-}
-.btn-secondary.focus{
-    color: black;
-}
-.btn-secondary:hover{
-    color: black;
-}
-#main{
-    text-align: left;
-}
-.wave {
-    animation-name: wave-animation;
-   /* Refers to the name of your @keyframes element below */
-    animation-duration: 2.5s;
-   /* Change to speed up or slow down */
-    animation-iteration-count: infinite;
-   /* Never stop waving :) */
-    transform-origin: 70% 70%;
-   /* Pivot around the bottom-left palm */
-    display: inline-block;
-}
-.section{
-    background-color: #F1FAEE;
-    border-color: #E63946;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 1px;
-    text-align: left;
-}
-hr{
-    border-top: 1px solid #E63946;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.row {
-  display: flex;
-}
-.column {
-  padding-bottom: 5px;
-  flex: 50%;
-  margin-left: 15px;
 }
 .info{
     margin-left: 3px;

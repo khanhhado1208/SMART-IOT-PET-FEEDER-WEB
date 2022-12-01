@@ -15,27 +15,27 @@
       <nav>
         <img src="photos/logo.png" class="logo">
         <ul>
-            <li><a href="#" id="currentPage">Home</a></li>
-            <li><a href="#">About us</a></li>
+          <li><a href="#" id="currentPage">Home</a></li>
+          <li><a href="#">About us</a></li>
         </ul>
         <img src="photos/avatar.png" class="user-pic" onclick="toggleMenu()">
   
         <div class="sub-menu-wrap" id="subMenu">
-            <div class="sub-menu">
-                <div class="user-info">
-                    <img src="photos/avatar.png">
-                    <h5><%= username %></h5>
-                </div>
-                <hr>
-                <a href="#" class="sub-menu-link">
-                    <img src="photos/setting.png">
-                    <p>Setting</p>
-                </a>
-                <a href="/logout" class="sub-menu-link">
-                    <img src="photos/logout.png">
-                    <p>Logout</p>
-                </a>
+          <div class="sub-menu">
+            <div class="user-info">
+              <img src="photos/avatar.png">
+              <h5><%= username %></h5>
             </div>
+            <hr>
+            <a href="#" class="sub-menu-link">
+              <img src="photos/setting.png">
+              <p>Setting</p>
+            </a>
+            <a href="/logout" class="sub-menu-link">
+              <img src="photos/logout.png">
+              <p>Logout</p>
+            </a>
+          </div>
         </div>
       </nav>
     </header>
@@ -44,7 +44,7 @@
       <h1>Hello <%= username %> <span class="wave">👋</span></h1>
       <h2>Welcome to the Handajun™ pet feeder control panel. Here you can set up a feeding routine for your pet.</h2>
 
-      <div id="main">      
+      <div id="main">
         <div class="section">
           <h3>Feeder control</h3>
           <div class="row">
@@ -52,10 +52,10 @@
               <h4>Power</h4>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                   <label class="btn btn-secondary active">
-                    <input type="radio" name="power" id="option1" autocomplete="off" value="no"/> Off
+                    <input type="radio" name="power" autocomplete="off" value="no"> Off
                   </label>
                   <label class="btn btn-secondary">
-                    <input type="radio" name="power" id="option2" autocomplete="off" value="yes"/> On
+                    <input type="radio" name="power" autocomplete="off" value="yes"> On
                   </label>
                 </div>
             </div>
@@ -67,50 +67,19 @@
                   You can configure the pet feeder in two ways. You can choose one of these options to feed your pet. 
                   Auto mode will be used to automatically refill the bowl, while schedule mode will be used to manually set it up.
                 </div>
-                <!-- <img src="photos/infoMachine.jpg" id="infoMachine"> -->
 
-
-                <h4>Mode<img src="photos/info.png" class="info"></h4>
-
+                
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                   <label class="btn btn-secondary" id="modebtn1">
-                    <input type="radio" name="mode" id="option1" autocomplete="off" value="auto"> Auto
+                    <input type="radio" name="mode" autocomplete="off" value="auto"> Auto
                   </label>
                   <label class="btn btn-secondary" id="modebtn2">
-                    <input type="radio" name="mode" id="option2" autocomplete="off" value="scheduled"> Scheduled
+                    <input type="radio" name="mode" autocomplete="off" value="scheduled"> Scheduled
                   </label>
                 </div>
               </div>
             </div>
           </div>
-
-          </div>
-        </div>
-          
-        <script>
-          $('[name="power"]').on('change', function(){  
-          if($(this).val()  === "yes"){
-            $('#collapse').collapse('show')
-          }else{
-            $('#collapse').collapse('hide')
-            $('#collapseMode').collapse('hide')
-            
-            // set mode buttons as inactive if device is shut off
-            document.getElementById("modebtn1").classList.remove("active");
-            document.getElementById("modebtn2").classList.remove("active");
-          }
-          });
-        </script>
-
-        <div id="collapseMode" class="panel-collapse collapse">
-          <div class="section">
-            <h3>Feeding setup</h3>
-
-            <p>Feeding per day</p><br>
-            <p>Feeding times</p><br>
-            <p>Portion size</p>
-          </div>
-        </div>
 
           </div>
         </div>
@@ -292,18 +261,18 @@
   </script>
 
  <script>
-const divInfo = document.querySelector('#infoMachine')
-let isClick = true;
-let showOrHide = function(){
-  if(isClick){
-    divInfo.style.display = 'block'
-    isClick = false
-  }else{
-    divInfo.style.display = 'none'
-    isClick = true
-  }
-  
-}
+    const divInfo = document.querySelector('#infoMachine')
+    let isClick = true;
+    let showOrHide = function(){
+      if(isClick){
+        divInfo.style.display = 'block'
+        isClick = false
+      }else{
+        divInfo.style.display = 'none'
+        isClick = true
+      }
+      
+    }
  </script>
 </body>
 </html>
@@ -319,4 +288,4 @@ favicon
 logo fix
 add content
 collapse
-
+-->
