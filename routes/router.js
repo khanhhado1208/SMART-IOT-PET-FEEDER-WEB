@@ -3,8 +3,9 @@ module.exports = (function() {
     var router = require('express').Router()
     const crypto = require('crypto')
     const User = require('../models/Users')
-    
+    const FeederSetup = require('../models/feeder-setup')
     var session
+
     // GET main page
     router.get("/", (req, res) => {
         const sesh = req.session
@@ -14,6 +15,34 @@ module.exports = (function() {
             res.render("home.ejs")
         }
     });
+
+    //TODO: convert feeding time string to number
+
+    /* This route sends the schedule data to server */
+    router.post('/schedule', async (req,res) => {
+        const mode = req.body.mode      // mode of feeder
+        const perday = req.body.perday  // how many feedings per day
+        const size = req.body.size      // portion size
+
+        // populate times[] with dates of feeding
+        var times = [req.body.first]
+        if(perday>=2){
+            times.push(req.body.second);
+        }
+        if(perday==3){
+            times.push(req.body.third);
+        }
+        console.log("times: "+times)
+
+        if(mode=="auto"){
+            await FeederSetup.updateOne({username:session.userid}, {mode:true, portionsize:null, portionTime:[]}, {upsert:true})
+        }else{ //scheduled mode
+            await FeederSetup.updateOne({username:session.userid}, {$set: {mode:true, portionSize:size, portionTime:times}}, {upsert:true})
+        }
+
+        res.redirect("/")
+    })
+
 
     // POST login form
     router.post('/login', async (req,res) => {
@@ -43,7 +72,7 @@ module.exports = (function() {
     router.post("/register", async (req, res) => {
         crypto.pbkdf2(req.body.password, "saltysalt", 200000, 64, "sha512", async (err, pbkdf2Key) => {
             if (err) throw err;
-            if (!(await checkUsername(req.body.username))) { //check if username is taken
+            if (!(await checkUser(req.body.username))) { //check if username is taken
             const response = await User.create({
                 username: req.body.username,
                 password: pbkdf2Key.toString("hex")
@@ -85,25 +114,42 @@ module.exports = (function() {
     }
 
     /**
-     * @function checkUsername
-     * @description Checks whether the username is taken or not
-     * @return {object} returns if username is taken(true) or not(false)
+     * @function checkUser
+     * @description Checks whether the user exists or not
+     * @return {object} returns if user exists(true) or not(false)
      **/
-    async function checkUsername(username) {
-        let taken = false;
+    async function checkUser(username) {
+        let exists = false;
         await User.findOne({ username: username }).then(user => {
             if (user) {
-                taken = true;
+                exists = true;
             }
         })
         .catch(err => {
             console.log(err);
         });
 
-        return taken;
-    }
+        return exists;
+    }    
 
-    
+    /** NOT IN USE NOW MIGHT DELETE LATER
+     * @function checkUserData
+     * @description Checks whether the user exists or not
+     * @return {object} returns if user exists(true) or not(false)
+     **/
+    /*
+    async function checkUserData(username) {
+        let exists = false;
+        await FeederSetup.findOne({ username: username }).then(username => {
+            if (username) {
+                exists = true;
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+        return exists;
+    }*/
     return router;
 })();
-

@@ -4,7 +4,6 @@ const SetupSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true
     },
     mode: { //if true, fill bowl automatically   || if false, feed x times a day
         type: Boolean,
@@ -14,7 +13,7 @@ const SetupSchema = new mongoose.Schema({
         type: Number
     },
     portionTime: { // Times of feeding (per day)
-        type: [Number]
+        type: [String]
     }
 })
 

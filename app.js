@@ -4,12 +4,9 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require("body-parser")
 const sessions = require('express-session')
 const path = require('path')
-const User = require('./models/Users');
-const FeederSetup = require("./models/Feeder-setup")
 const app = express() /* Init express app */
 const mongoose = require('mongoose')
 require('dotenv').config() 
-
 /* connect to routes */
 const router = require('./routes/router') /* Connect to home router */
 
