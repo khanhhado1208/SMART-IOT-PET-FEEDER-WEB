@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About us</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hero">
+    <header>
+      <nav>
+        <img src="photos/logo.png" class="logo">
+        <ul>
+          <li><a href="/" >Home</a></li>
+          <li><a href="/about" id="currentPage">About us</a></li>
+        </ul>
+        <img src="photos/avatar.png" class="user-pic" onclick="toggleMenu()">
+  
+        <div class="sub-menu-wrap" id="subMenu">
+          <div class="sub-menu">
+            <div class="user-info">
+              <img src="photos/avatar.png">
+              <h5><%= username %></h5>
+            </div>
+            <hr>
+            <a href="/settings" class="sub-menu-link">
+              <img src="photos/setting.png">
+              <p>Settings</p>
+            </a>
+            <a href="/logout" class="sub-menu-link">
+              <img src="photos/logout.png">
+              <p>Logout</p>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>About us</h1>
+
+      <div id="main">
+        <div class="section">
+        
+        </div>
+
+      </div> <!--main content-->
+
+      <footer>
+        <img src="photos/logo.png" id="logofooter"><br>
+        Copyright © 2022 Daniel Radvanyi, Ha Do, Anatoliy Rubanenko, Shen Jun, Haque Imtiazul
+      </footer>
+
+    </div> <!--container-->
+  </div> <!--hero-->
+
+
+  <script>
+    let subMenu = document.getElementById("subMenu")
+    function toggleMenu(){
+        subMenu.classList.toggle("open-menu")
+    }
+  </script>
+
+</body>
+</html>

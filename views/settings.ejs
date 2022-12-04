@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Settings</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hero">
+    <header>
+      <nav>
+        <img src="photos/logo.png" class="logo">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About us</a></li>
+        </ul>
+        <img src="photos/avatar.png" class="user-pic" onclick="toggleMenu()">
+  
+        <div class="sub-menu-wrap" id="subMenu">
+          <div class="sub-menu">
+            <div class="user-info">
+              <img src="photos/avatar.png">
+              <h5><%= username %></h5>
+            </div>
+            <hr>
+            <a href="/settings" class="sub-menu-link">
+              <img src="photos/setting.png">
+              <p>Settings</p>
+            </a>
+            <a href="/logout" class="sub-menu-link">
+              <img src="photos/logout.png">
+              <p>Logout</p>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Settings</h1>
+      <div id="main">
+        <div class="section">
+            <h3>Change password</h3>
+            <form action="/settings" method="post">
+                <div class="form-outline mb-4">
+                    <label class="form-label"name="password" required>New password:</label>
+                    <input name="password" class="form-control form-control-lg" placeholder="Enter new password" />
+                </div>
+                <div class="pt-1 mb-4">
+                    <button class="btn btn-dark btn-lg btn-block" id="button" name="type" value="password" type="submit">
+                        Change my password
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="section">
+            <h3>Add/change device ID</h3>
+            <h5>Current ID: </h5>
+            <p>You can find your device's unique ID on the bottom of the product.</p>
+
+            <form action="/settings" method="post">
+                <div class="form-outline mb-4">
+                    <label class="form-label"name="id" required>Device ID:</label>
+                    <input name="id" class="form-control form-control-lg" placeholder="Device ID" />
+                </div>
+                <div class="pt-1 mb-4">
+                    <button class="btn btn-dark btn-lg btn-block" id="button" name="type" value="id"  type="submit">
+                        Add/Change my device ID
+                    </button>
+                </div>
+            </form>
+
+
+        </div>
+      </div> <!--main content-->
+
+      <footer>
+        <img src="photos/logo.png" id="logofooter"><br>
+        Copyright © 2022 Daniel Radvanyi, Ha Do, Anatoliy Rubanenko, Shen Jun, Haque Imtiazul
+      </footer>
+
+    </div> <!--container-->
+  </div> <!--hero-->
+
+
+  <script>
+    let subMenu = document.getElementById("subMenu")
+    function toggleMenu(){
+        subMenu.classList.toggle("open-menu")
+    }
+  </script>
+
+</body>
+</html>

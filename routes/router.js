@@ -24,7 +24,25 @@ module.exports = (function() {
         }
     });
 
-    //TODO: convert feeding time string to number
+    // GET about us page
+    router.get("/about", (req, res) => {
+        const sesh = req.session
+        if(sesh.userid){ // if there is an active session with userid
+            res.render("about.ejs", { username: sesh.userid})
+        }else{
+            res.render("home.ejs")
+        }
+    });
+
+    // GET settings page
+    router.get("/settings", (req, res) => {
+        const sesh = req.session
+        if(sesh.userid){ // if there is an active session with userid
+            res.render("settings.ejs", { username: sesh.userid})
+        }else{
+            res.render("home.ejs")
+        }
+    });
 
     /* This route sends the schedule data to server */
     router.post('/schedule', async (req,res) => {
@@ -47,25 +65,22 @@ module.exports = (function() {
         }
         console.log("times: "+times)
 
+        // send to database
         if(mode){ // automatic feeding
             await FeederSetup.updateOne({username:session.userid}, {mode:true, portionsize:null, portionTime:[]}, {upsert:true})
         }else{ //scheduled mode
             await FeederSetup.updateOne({username:session.userid}, {$set: {mode:false, portionSize:size, portionTime:times}}, {upsert:true})
         }
 
-        /*const query = await User({
-            username: session.userid
-          });
 
-        query.device_ID;*/
-
+        // publish on mqtt
+        const user = await User.findOne({username: session.userid});
         const info=JSON.stringify({
             mode:mode,
             size:size,
             times:times
         })
-
-        const topic = pub_topic+device_ID
+        const topic = pub_topic+user.device_ID
         client.publish(topic, info)
         console.log(`Send '${info}' to topic '${topic}'`)
 
@@ -83,6 +98,18 @@ module.exports = (function() {
         }else{
             res.send('Invalid username or password')
         }
+    })
+
+    // POST settings
+    router.post('/settings', async (req,res) => {
+        
+        if(req.body.type == "id"){
+            await User.updateOne({username: session.userid}, {device_ID:req.body.id})
+        }else{
+            //change password here
+        }
+       
+        res.redirect("/") //todo: redirect to "changes successfully saved"
     })
 
     // log out of session
@@ -160,24 +187,7 @@ module.exports = (function() {
         return exists;
     }    
 
-    /** NOT IN USE NOW MIGHT DELETE LATER
-     * @function checkUserData
-     * @description Checks whether the user exists or not
-     * @return {object} returns if user exists(true) or not(false)
-     **/
-    /*
-    async function checkUserData(username) {
-        let exists = false;
-        await FeederSetup.findOne({ username: username }).then(username => {
-            if (username) {
-                exists = true;
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
-
-        return exists;
-    }*/
     return router;
 })();
+
+// TODO: convert feeding time string to number
