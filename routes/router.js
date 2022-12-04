@@ -1,10 +1,18 @@
 module.exports = (function() {
     'use strict';
-    var router = require('express').Router()
+    const router = require('express').Router()
     const crypto = require('crypto')
+    const mqtt = require('mqtt');
     const User = require('../models/Users')
     const FeederSetup = require('../models/feeder-setup')
-    var session
+    let session
+
+    /* MQTT setup */
+    const pub_topic = "handajun/"
+    const address = 'mqtt://public.mqtthq.com:1883'; //public mqtt broker
+    const client = mqtt.connect(address);
+    //temp
+    const device_ID = "veryrandomid"
 
     // GET main page
     router.get("/", (req, res) => {
@@ -20,33 +28,53 @@ module.exports = (function() {
 
     /* This route sends the schedule data to server */
     router.post('/schedule', async (req,res) => {
-        const mode = req.body.mode      // mode of feeder
         const perday = req.body.perday  // how many feedings per day
         const size = req.body.size      // portion size
+        let mode                        // mode of feeder
+        if(req.body.mode=="auto"){
+            mode=true;
+        }else{
+            mode=false
+        }
 
         // populate times[] with dates of feeding
-        var times = [req.body.first]
+        let times = [req.body.first]
         if(perday>=2){
-            times.push(req.body.second);
+            times.push(req.body.second)
         }
         if(perday==3){
-            times.push(req.body.third);
+            times.push(req.body.third)
         }
         console.log("times: "+times)
 
-        if(mode=="auto"){
+        if(mode){ // automatic feeding
             await FeederSetup.updateOne({username:session.userid}, {mode:true, portionsize:null, portionTime:[]}, {upsert:true})
         }else{ //scheduled mode
-            await FeederSetup.updateOne({username:session.userid}, {$set: {mode:true, portionSize:size, portionTime:times}}, {upsert:true})
+            await FeederSetup.updateOne({username:session.userid}, {$set: {mode:false, portionSize:size, portionTime:times}}, {upsert:true})
         }
+
+        /*const query = await User({
+            username: session.userid
+          });
+
+        query.device_ID;*/
+
+        const info=JSON.stringify({
+            mode:mode,
+            size:size,
+            times:times
+        })
+
+        const topic = pub_topic+device_ID
+        client.publish(topic, info)
+        console.log(`Send '${info}' to topic '${topic}'`)
 
         res.redirect("/")
     })
 
-
     // POST login form
     router.post('/login', async (req,res) => {
-        var login = await Authorizer(req.body.username, req.body.password);
+        const login = await Authorizer(req.body.username, req.body.password);
 
         if(login != null){
             session=req.session
@@ -95,7 +123,7 @@ module.exports = (function() {
      * @return username or null
      **/
     async function Authorizer(username, password) {
-        var returnable;
+        let returnable;
 
         const key = crypto.pbkdf2Sync(password, "saltysalt", 200000, 64, "sha512") // hash password to encrypted version
         const userQuery = await User.findOne({

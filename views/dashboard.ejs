@@ -64,8 +64,10 @@
 
                 <h4>Mode<img src="photos/info.png" class="info" onclick="showOrHide()" id="showInfo"></h4>
                 <div id="infoMachine">
-                  You can configure the pet feeder in two ways. You can choose one of these options to feed your pet. 
+                  <p>
+                    You can configure the pet feeder in two ways. You can choose one of these options to feed your pet. 
                   Auto mode will automatically refill the bowl, while in schedule mode you can set up manually when the feeder activates.
+                  </p>
                 </div>
 
                 
@@ -143,7 +145,7 @@
                 <option value="3">Large</option>
               </select>
 
-              <button class="btn btn-dark btn-lg btn-block" id="button" type="submit">
+              <button class="btn btn-dark btn-lg btn-block" type="submit">
                 Start routine
               </button>
             </form>
@@ -202,7 +204,7 @@
               <p>In this mode, the feeder will automatically fill the bowl whenever it is empty. </p>
 
               <form action="/schedule" method="post">
-                <button class="btn btn-dark btn-lg btn-block" id="button" name="mode" value="auto" type="submit">
+                <button class="btn btn-dark btn-lg btn-block" name="mode" value="auto" type="submit">
                   Start routine
                 </button>
               </form>
@@ -254,6 +256,15 @@
             </div>
           </div>
         </div>
+
+        <div class="section">
+          <form action="/mqtt" method="post">
+            <button class="btn btn-dark btn-lg btn-block" name="mqtt" type="submit">
+              Test button
+            </button>
+          </form>
+        </div>
+
       </div> <!--main content-->
 
 

@@ -99,19 +99,15 @@ nav ul li a:focus {
     border: 1px solid #E63946;
     border-radius: 15px;
 }
-
-
 #infoMachine { 
     display: none;
     background:#A8DADC;
-    padding: 20px;
+    padding: 10px;
     margin: 10px;
     border: 1px solid #E63946;
     border-radius: 15px;
     font-size: 20px;
 }
-
-
 .user-info{
     display: flex;
     align-items: center;
@@ -219,7 +215,6 @@ footer{
   animation-name: buttonpress;
   animation-duration: 0.5s;
 }
-
 @keyframes buttonpress {
   0%{
      box-shadow: 0px 0px  #1D3557
@@ -325,10 +320,20 @@ border-width: 2px;
 #selected{
     background-color: rgb(226, 226, 226);
 }
-#button{
+.btn-block{
     margin-top: 15px;
     color: #F1FAEE;
     background-color: #1D3557;
+}
+.btn-block:hover{
+    background-color: #172b47;
+    color: #F1FAEE;
+}
+.btn-block:focus{
+    color: #F1FAEE;
+}
+.btn-block:active{
+    box-shadow: inset 0px 0px 15px black;
 }
 #timeinput{
     margin-right: 30%;
