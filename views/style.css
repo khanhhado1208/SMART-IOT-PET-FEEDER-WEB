@@ -99,13 +99,15 @@ nav ul li a:focus {
     border: 1px solid #E63946;
     border-radius: 15px;
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 1c4eb1f (updated change password-about use and photo for homepage)
 #infoMachine { 
     display: none;
     background:#A8DADC;
-    padding: 20px;
-    padding-bottom: 8px;
+    padding: 10px;
     margin: 10px;
     border: 1px solid #E63946;
     border-radius: 15px;
@@ -298,7 +300,6 @@ hr{
     margin-bottom: 7px;
     width: 11px;
 }
-
 .info img{
     width: 500px;
     border-radius: 50%;
@@ -405,6 +406,53 @@ hr{
   padding-bottom: 5px;
   flex: 50%;
   margin-left: 15px;
+}
+.info{
+    margin-left: 3px;
+    margin-bottom: 7px;
+    width: 11px;
+
+}
+.form-label{
+    font-size: 17px;
+}
+.form-select{
+  width: 100%;
+  min-width: 10ch;
+  max-width: 12ch;
+  border: 1px solid hsla(215, 50%, 23%, 0.499);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 17px;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.form-select:focus{
+border-color: #E63946;
+border-width: 2px;
+}
+#selected{
+    background-color: rgb(226, 226, 226);
+}
+.btn-block{
+    margin-top: 15px;
+    color: #F1FAEE;
+    background-color: #1D3557;
+}
+.btn-block:hover{
+    background-color: #172b47;
+    color: #F1FAEE;
+}
+.btn-block:focus{
+    color: #F1FAEE;
+}
+.btn-block:active{
+    box-shadow: inset 0px 0px 15px black;
+}
+#timeinput{
+    margin-right: 30%;
 }
 .info{
     margin-left: 3px;
