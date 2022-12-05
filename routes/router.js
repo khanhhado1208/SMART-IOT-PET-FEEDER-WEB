@@ -107,11 +107,14 @@ module.exports = (function() {
             await User.updateOne({username: session.userid}, {device_ID:req.body.id})
         }else{
             //change password here
+<<<<<<< HEAD
             crypto.pbkdf2(req.body.password, "saltysalt", 200000, 64, "sha512", async (err, pbkdf2Key)=>{
                 if(err) throw err
                 const response = await User.updateOne({username: session.userid}, {password:pbkdf2Key.toString("hex")})
                 console.log("Password changed successfully: ", response);
             })
+=======
+>>>>>>> main
         }
        
         res.redirect("/") //todo: redirect to "changes successfully saved"
