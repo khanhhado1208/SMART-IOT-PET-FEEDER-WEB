@@ -59,4 +59,18 @@ footer{
 }
 .alignright{
     text-align: right;
+<<<<<<< HEAD
 }
+=======
+}
+
+.img-fluid2{
+    max-width: 100%;
+    height: 300px;
+}
+
+.img-fluid-set{
+    max-width: 100%;
+   height: 500px;
+}
+>>>>>>> 1c4eb1f (updated change password-about use and photo for homepage)

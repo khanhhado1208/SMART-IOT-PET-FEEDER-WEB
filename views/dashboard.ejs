@@ -69,8 +69,19 @@
                   Auto mode will automatically refill the bowl, while in schedule mode you can set up manually when the feeder activates.
                   </p>
                 </div>
+<<<<<<< HEAD
+
+<<<<<<< HEAD
+
+                <h4>Mode<img src="photos/info.png" class="info"></h4>
+
+=======
+                
+>>>>>>> 1c4eb1f (updated change password-about use and photo for homepage)
+=======
 
                 
+>>>>>>> main
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                   <label class="btn btn-secondary" id="modebtn1">
                     <input type="radio" name="mode" autocomplete="off" value="auto"> Auto
@@ -94,6 +105,78 @@
             $('#collapse').collapse('hide')
             $('#collapseMode').collapse('hide')
             $('#collapseAuto').collapse('hide')
+<<<<<<< HEAD
+            // set mode buttons as inactive if device is shut off
+            document.getElementById("modebtn1").classList.remove("active");
+            document.getElementById("modebtn2").classList.remove("active");
+          }
+          });
+        </script>
+
+        <div id="collapseMode" class="panel-collapse collapse">
+          <div class="section">
+            <h3>Feeding setup</h3>
+
+            <form action="/schedule" method="post">
+              <label class="form-label" name="perday" required>Feeding per day:</label>
+              <select class="form-select" id="perselector" name="perday" autocomplete="off">
+                <option selected="selected" id="selected" value="none">Choose</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+
+              <hr>
+
+              <div class="row" id="timeinput">
+                <div class="column">
+                  <div id="collapse1" class="panel-collapse collapse">
+                    <label class="form-label">Select first feeding time</label>
+                    <input type="time" name="first" class="clock" autocomplete="off">
+                  </div>
+                </div>
+                <div class="column">
+                  <div id="collapse2" class="panel-collapse collapse">
+                    <label class="form-label">Select second feeding time</label>
+                    <input type="time" name="second" class="clock" autocomplete="off">
+                  </div>
+                </div>
+                <div class="column">
+                  <div id="collapse3" class="panel-collapse collapse">
+                    <label class="form-label">Select third feeding time</label>
+                    <input type="time" name="third" class="clock" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <hr id="separator" class="panel-collapse collapse">
+              <label class="form-label">Portion size:</label>
+              <select class="form-select" name="size">
+                <option selected id="selected" autocomplete="off">Choose</option>
+                <option value="1">Small</option>
+                <option value="2">Medium</option>
+                <option value="3">Large</option>
+              </select>
+
+              <button class="btn btn-dark btn-lg btn-block" type="submit">
+                Start routine
+              </button>
+            </form>
+          </div>
+        </div>
+
+          </div>
+        </div>
+          
+        <script>
+          $('[name="power"]').on('change', function(){  
+          if($(this).val()  === "yes"){
+            $('#collapse').collapse('show')
+          }else{
+            $('#collapse').collapse('hide')
+            $('#collapseMode').collapse('hide')
+            
+=======
+>>>>>>> main
             // set mode buttons as inactive if device is shut off
             document.getElementById("modebtn1").classList.remove("active");
             document.getElementById("modebtn2").classList.remove("active");
@@ -163,6 +246,14 @@
           }
           });
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 1c4eb1f (updated change password-about use and photo for homepage)
+=======
+>>>>>>> main
           //script for revealing feeding time options
           $('.collapse1').addClass('collapse');
 
@@ -306,4 +397,12 @@ favicon
 logo fix
 add content
 collapse
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
 -->
+>>>>>>> 1c4eb1f (updated change password-about use and photo for homepage)
+=======
+-->
+>>>>>>> main
