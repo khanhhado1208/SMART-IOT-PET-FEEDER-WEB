@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Handajun™ pet feeder</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="registerstyle.css">
+    <link rel="stylesheet" href="authstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="#" />
+
+</head>
+
+<body>
+
+    <div class="hero">
+        <header>
+            <nav>
+                <img src="photos/logo.png" class="logo">
+                <ul>
+                    <li><a href="/" id="currentPage">Home</a></li>
+                    <li><a href="/about">About us</a></li>
+                </ul>
+                <img src="photos/avatar.png" class="user-pic" onclick="toggleMenu()">
+
+                <div class="sub-menu-wrap" id="subMenu">
+                    <div class="sub-menu">
+                        <div class="user-info">
+                            <img src="photos/avatar.png">
+                            <h5>
+                                <%= username %>
+                            </h5>
+                        </div>
+                        <hr>
+                        <a href="/setting" class="sub-menu-link">
+                            <img src="photos/setting.png">
+                            <p>Setting</p>
+                        </a>
+                        <a href="/logout" class="sub-menu-link">
+                            <img src="photos/logout.png">
+                            <p>Logout</p>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block" id="images">
+                                <img src="https://preview.redd.it/wkjdasoyp0e21.jpg?auto=webp&s=2f08d30571917a164e363e38064fda95dab17223"
+                                    alt="register form" class="img-fluid-set" style="border-radius: 1rem 0 0 1rem" />
+
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body">
+
+                                    <div class="logobox">
+                                        <img src="photos/logo.png" class="logo">
+                                    </div>
+                                    <hr>
+                                    <h5>
+                                        Change your password
+                                    </h5>
+                                    <form action="/setting" method="post">
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" id="password1" name="password1"
+                                                required>Password:</label>
+                                            <input required type="password1" name="password1" id="password1"
+                                                class="form-control form-control-lg" placeholder="Enter password" />
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" id="password2" name="password2" required>Confirm
+                                                Password:</label>
+                                            <input required type="password2" name="password2" id="password2"
+                                                class="form-control form-control-lg" placeholder="Enter password" />
+                                        </div>
+                                        <div class="pt-1 mb-4">
+                                            <button class="btn btn-dark btn-lg btn-block" id="button" type="submit">
+                                                Submit
+                                            </button>
+                                        </div>
+
+                                    </form>
+
+                                    <div class="linker">
+                                        Want to delete your account?
+                                        <a href="#">Delete here</a>
+                                        </p>
+                                        <hr>
+                                        <footer>
+                                            <img src="photos/logo.png" id="logofooter"><br>
+                                            Copyright © 2022 Daniel Radvanyi, Ha Do, Anatoliy Rubanenko, Shen Jun, Haque
+                                            Imtiazul
+                                        </footer>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <script>
+                let subMenu = document.getElementById("subMenu")
+                function toggleMenu() {
+                    subMenu.classList.toggle("open-menu")
+                }
+            </script>
+
+</body>
+
+</html>
+
+</body>
+
+</html>
+
+
+
+<!--TODO
+favicon
+logo fix
+add content
+collapse
+-->
