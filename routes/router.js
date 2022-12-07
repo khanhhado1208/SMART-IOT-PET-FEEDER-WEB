@@ -11,8 +11,6 @@ module.exports = (function() {
     const pub_topic = "handajun/"
     const address = 'mqtt://public.mqtthq.com:1883'; //public mqtt broker
     const client = mqtt.connect(address);
-    //temp
-    const device_ID = "veryrandomid"
 
     // GET main page
     router.get("/", (req, res) => {
