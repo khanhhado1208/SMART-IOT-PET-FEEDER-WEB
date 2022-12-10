@@ -26,17 +26,19 @@ module.exports = (function() {
     router.get("/about", (req, res) => {
         const sesh = req.session
         if(sesh.userid){ // if there is an active session with userid
-            res.render("about.ejs", { username: sesh.userid})
+            res.render("aboutUs.ejs", { username: sesh.userid})
         }else{
             res.render("home.ejs")
         }
     });
 
     // GET settings page
-    router.get("/settings", (req, res) => {
+    router.get("/settings", async (req, res) => {
+
         const sesh = req.session
         if(sesh.userid){ // if there is an active session with userid
-            res.render("settings.ejs", { username: sesh.userid})
+            const device_ID = await getDevice(session.userid)
+            res.render("settings.ejs", { username: sesh.userid, device_ID: device_ID})
         }else{
             res.render("home.ejs")
         }
@@ -104,15 +106,11 @@ module.exports = (function() {
         if(req.body.type == "id"){
             await User.updateOne({username: session.userid}, {device_ID:req.body.id})
         }else{
-            //change password here
-<<<<<<< HEAD
             crypto.pbkdf2(req.body.password, "saltysalt", 200000, 64, "sha512", async (err, pbkdf2Key)=>{
                 if(err) throw err
                 const response = await User.updateOne({username: session.userid}, {password:pbkdf2Key.toString("hex")})
                 console.log("Password changed successfully: ", response);
             })
-=======
->>>>>>> main
         }
        
         res.redirect("/") //todo: redirect to "changes successfully saved"
@@ -177,7 +175,7 @@ module.exports = (function() {
     /**
      * @function checkUser
      * @description Checks whether the user exists or not
-     * @return {object} returns if user exists(true) or not(false)
+     * @return {Boolean} returns if user exists(true) or not(false)
      **/
     async function checkUser(username) {
         let exists = false;
@@ -191,6 +189,16 @@ module.exports = (function() {
         });
 
         return exists;
+    }    
+
+    /**
+     * @function getDevice
+     * @return {String} returns device ID of user
+     **/
+    async function getDevice(username) {
+        const query = await User.findOne({ username: username })
+        const device_ID = query.device_ID;
+        return device_ID
     }    
 
     return router;

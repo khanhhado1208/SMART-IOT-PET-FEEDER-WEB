@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Handajun™ pet feeder</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,119 +8,81 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="hero">
-    <header>
-      <nav>
-        <img src="photos/logo.png" class="logo">
-        <ul>
-          <li><a href="/" id="currentPage">Home</a></li>
-          <li><a href="/about">About us</a></li>
-        </ul>
-        <img src="photos/avatar.png" class="user-pic" onclick="toggleMenu()">
-  
-        <div class="sub-menu-wrap" id="subMenu">
-          <div class="sub-menu">
-            <div class="user-info">
-              <img src="photos/avatar.png">
-              <h5><%= username %></h5>
+  </head>
+  <body>
+    <div class="hero">
+      <header>
+        <nav>
+          <img src="photos/logo.png" alt="Handajun logo" class="logo">
+          <ul>
+            <li><a href="/" id="currentPage">Home</a></li>
+            <li><a href="/about">About us</a></li>
+          </ul>
+          <img src="photos/avatar.png" alt="Profile picture. Click to open dropdown menu." class="user-pic" onclick="toggleMenu()">
+
+          <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+              <div class="user-info">
+                <img src="photos/avatar.png" alt="Profile picture">
+                <h5><%= username %></h5>
+              </div>
+              <hr>
+              <a href="/settings" class="sub-menu-link">
+                <img src="photos/setting.png" alt="Settings button">
+                <p>Settings</p>
+              </a>
+              <a href="/logout" class="sub-menu-link">
+                <img src="photos/logout.png" alt="Logout button">
+                <p>Logout</p>
+              </a>
             </div>
-            <hr>
-            <a href="/settings" class="sub-menu-link">
-              <img src="photos/setting.png">
-              <p>Settings</p>
-            </a>
-            <a href="/logout" class="sub-menu-link">
-              <img src="photos/logout.png">
-              <p>Logout</p>
-            </a>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
 
-    <div class="container">
-      <h1>Hello <%= username %> <span class="wave">👋</span></h1>
-      <h2>Welcome to the Handajun™ pet feeder control panel. Here you can set up a feeding routine for your pet.</h2>
+      <div class="container">
+        <h1>Hello <%= username %> <span class="wave">👋</span></h1>
+        <h2>Welcome to the Handajun™ pet feeder control panel. Here you can set up a feeding routine for your pet.</h2>
 
-      <div id="main">
-        <div class="section">
-          <h3>Feeder control</h3>
-          <div class="row">
-            <div class="column">
-              <h4>Power</h4>
+        <div id="main">
+          <div class="section">
+            <h3>Feeder control</h3>
+            <div class="row">
+              <div class="column">
+                <h4>Power</h4>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-secondary active">
-                    <input type="radio" name="power" autocomplete="off" value="no"> Off
-                  </label>
-                  <label class="btn btn-secondary">
-                    <input type="radio" name="power" autocomplete="off" value="yes"> On
-                  </label>
+                  <label class="btn btn-secondary active"> <input type="radio" name="power" autocomplete="off" value="no"> Off </label>
+                  <label class="btn btn-secondary"> <input type="radio" name="power" autocomplete="off" value="yes"> On </label>
                 </div>
-            </div>
-            <div class="column">
-              <div id="collapse" class="panel-collapse collapse">
+              </div>
+              <div class="column">
+                <div id="collapse" class="panel-collapse collapse">
+                  <h4>Mode<img src="photos/info.png" class="info" alt="Info button" onclick="showOrHide()" id="showInfo"></h4>
+                  <div id="infoMachine">
+                    <p>
+                      You can configure the pet feeder in two ways. You can choose one of these options to feed your pet. Auto mode will automatically refill the bowl, while in schedule mode you can set up manually when the feeder
+                      activates.
+                    </p>
+                  </div>
 
-                <h4>Mode<img src="photos/info.png" class="info" onclick="showOrHide()" id="showInfo"></h4>
-                <div id="infoMachine">
-                  <p>
-                    You can configure the pet feeder in two ways. You can choose one of these options to feed your pet. 
-                  Auto mode will automatically refill the bowl, while in schedule mode you can set up manually when the feeder activates.
-                  </p>
-                </div>
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-
-                <h4>Mode<img src="photos/info.png" class="info"></h4>
-
-=======
-                
->>>>>>> 1c4eb1f (updated change password-about use and photo for homepage)
-=======
-
-                
->>>>>>> main
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-secondary" id="modebtn1">
-                    <input type="radio" name="mode" autocomplete="off" value="auto"> Auto
-                  </label>
-                  <label class="btn btn-secondary" id="modebtn2">
-                    <input type="radio" name="mode" autocomplete="off" value="scheduled"> Scheduled
-                  </label>
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary" id="modebtn1"> <input type="radio" name="mode" autocomplete="off" value="auto"> Auto </label>
+                    <label class="btn btn-secondary" id="modebtn2"> <input type="radio" name="mode" autocomplete="off" value="scheduled"> Scheduled </label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
-          </div>
         </div>
-          
-        <script>
-          $('[name="power"]').on('change', function(){  
-          if($(this).val()  === "yes"){
-            $('#collapse').collapse('show')
-          }else{
-            $('#collapse').collapse('hide')
-            $('#collapseMode').collapse('hide')
-            $('#collapseAuto').collapse('hide')
-
-            // set mode buttons as inactive if device is shut off
-            document.getElementById("modebtn1").classList.remove("active");
-            document.getElementById("modebtn2").classList.remove("active");
-          }
-          });
-        </script>
 
         <div id="collapseMode" class="panel-collapse collapse">
           <div class="section">
             <h3>Feeding setup</h3>
 
             <form action="/schedule" method="post">
-              <label class="form-label" name="perday" required>Feeding per day:</label>
-              <select class="form-select" id="perselector" name="perday" autocomplete="off">
-                <option selected="selected" id="selected" value="none">Choose</option>
+              <label class="form-label">Feeding per day:</label>
+              <select class="form-select" id="perselector" name="perday">
+                <option selected class="selected" value="none">Choose</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -132,26 +94,26 @@
                 <div class="column">
                   <div id="collapse1" class="panel-collapse collapse">
                     <label class="form-label">Select first feeding time</label>
-                    <input type="time" name="first" class="clock" autocomplete="off">
+                    <input type="time" name="first" class="clock">
                   </div>
                 </div>
                 <div class="column">
                   <div id="collapse2" class="panel-collapse collapse">
                     <label class="form-label">Select second feeding time</label>
-                    <input type="time" name="second" class="clock" autocomplete="off">
+                    <input type="time" name="second" class="clock">
                   </div>
                 </div>
                 <div class="column">
                   <div id="collapse3" class="panel-collapse collapse">
                     <label class="form-label">Select third feeding time</label>
-                    <input type="time" name="third" class="clock" autocomplete="off">
+                    <input type="time" name="third" class="clock">
                   </div>
                 </div>
               </div>
               <hr id="separator" class="panel-collapse collapse">
               <label class="form-label">Portion size:</label>
               <select class="form-select" name="size">
-                <option selected id="selected" autocomplete="off">Choose</option>
+                <option selected class="selected">Choose</option>
                 <option value="1">Small</option>
                 <option value="2">Medium</option>
                 <option value="3">Large</option>
@@ -163,133 +125,17 @@
             </form>
           </div>
         </div>
-
-          </div>
-        </div>
-          
-        <script>
-          $('[name="power"]').on('change', function(){  
-          if($(this).val()  === "yes"){
-            $('#collapse').collapse('show')
-          }else{
-            $('#collapse').collapse('hide')
-            $('#collapseMode').collapse('hide')
-            
-
-            // set mode buttons as inactive if device is shut off
-            document.getElementById("modebtn1").classList.remove("active");
-            document.getElementById("modebtn2").classList.remove("active");
-          }
-          });
-        </script>
-
-        <div id="collapseMode" class="panel-collapse collapse">
-          <div class="section">
-            <h3>Feeding setup</h3>
-
-            <form action="/schedule" method="post">
-              <label class="form-label" name="perday" required>Feeding per day:</label>
-              <select class="form-select" id="perselector" name="perday" autocomplete="off">
-                <option selected="selected" id="selected" value="none">Choose</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-
-              <hr>
-
-              <div class="row" id="timeinput">
-                <div class="column">
-                  <div id="collapse1" class="panel-collapse collapse">
-                    <label class="form-label">Select first feeding time</label>
-                    <input type="time" name="first" class="clock" autocomplete="off">
-                  </div>
-                </div>
-                <div class="column">
-                  <div id="collapse2" class="panel-collapse collapse">
-                    <label class="form-label">Select second feeding time</label>
-                    <input type="time" name="second" class="clock" autocomplete="off">
-                  </div>
-                </div>
-                <div class="column">
-                  <div id="collapse3" class="panel-collapse collapse">
-                    <label class="form-label">Select third feeding time</label>
-                    <input type="time" name="third" class="clock" autocomplete="off">
-                  </div>
-                </div>
-              </div>
-              <hr id="separator" class="panel-collapse collapse">
-              <label class="form-label">Portion size:</label>
-              <select class="form-select" name="size">
-                <option selected id="selected" autocomplete="off">Choose</option>
-                <option value="1">Small</option>
-                <option value="2">Medium</option>
-                <option value="3">Large</option>
-              </select>
-
-              <button class="btn btn-dark btn-lg btn-block" type="submit">
-                Start routine
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <script>
-          $('[name="mode"]').on('change', function(){  
-          if($(this).val()  === "scheduled"){
-            $('#collapseMode').collapse('show')
-            $('#collapseAuto').collapse('hide')
-          }else{
-            $('#collapseMode').collapse('hide')
-            $('#collapseAuto').collapse('show')
-          }
-          });
-
-          //script for revealing feeding time options
-          $('.collapse1').addClass('collapse');
-
-          $('#perselector').change(function(){
-              //hide all elements
-              var selector = '#collapse' + $(this).val();
-              if($(this).val()==="none"){
-                $("#collapse1").collapse('hide');
-                $("#collapse2").collapse('hide');
-                $("#collapse3").collapse('hide');
-                $("#separator").collapse('hide');
-              }else if($(this).val()==="1"){
-                $("#collapse1").collapse('show');
-                $("#collapse2").collapse('hide');
-                $("#collapse3").collapse('hide');
-                $("#separator").collapse('show');
-              }else if($(this).val()==="2"){
-                $("#collapse1").collapse('show');
-                $("#collapse2").collapse('show');
-                $("#collapse3").collapse('hide');
-                $("#separator").collapse('show');
-              }else if($(this).val()==="3"){
-                $("#collapse1").collapse('show');
-                $("#collapse2").collapse('show');
-                $("#collapse3").collapse('show');
-                $("#separator").collapse('show');
-              }
-             // $('#collapse1').collapse('hide');
-
-              //$('#collapse1').collapse('show');
-          });
-
-
-        </script>
 
         <div id="collapseAuto" class="panel-collapse collapse">
           <div class="section">
             <h3>Automatic feeding</h3>
-              <p>In this mode, the feeder will automatically fill the bowl whenever it is empty. </p>
+            <p>In this mode, the feeder will automatically fill the bowl whenever it is empty.</p>
 
-              <form action="/schedule" method="post">
-                <button class="btn btn-dark btn-lg btn-block" name="mode" value="auto" type="submit">
-                  Start routine
-                </button>
-              </form>
+            <form action="/schedule" method="post">
+              <button class="btn btn-dark btn-lg btn-block" name="mode" value="auto" type="submit">
+                Start routine
+              </button>
+            </form>
           </div>
         </div>
 
@@ -301,7 +147,7 @@
               <div class="status">
                 <div class="row">
                   <div class="column">
-                    <p>Food: </p>
+                    <p>Food:</p>
                   </div>
                   <div class="column">
                     <button type="submit" class="btn btn-primary">Fill now</button>
@@ -310,7 +156,7 @@
                 <hr>
                 <div class="row">
                   <div class="column">
-                    <p>Water: </p>
+                    <p>Water:</p>
                   </div>
                   <div class="column">
                     <button type="submit" class="btn btn-primary">Fill now</button>
@@ -319,7 +165,7 @@
               </div>
             </div>
             <div class="vl"></div>
-            <div class="vl2"></div> 
+            <div class="vl2"></div>
             <div class="column">
               <h4>Feeder status:</h4>
               <div class="status">
@@ -338,49 +184,91 @@
             </div>
           </div>
         </div>
-
-        <div class="section">
-          <form action="/mqtt" method="post">
-            <button class="btn btn-dark btn-lg btn-block" name="mqtt" type="submit">
-              Test button
-            </button>
-          </form>
-        </div>
-
-      </div> <!--main content-->
-
+      </div>
+      <!--container-->
 
       <footer>
-        <img src="photos/logo.png" id="logofooter"><br>
+        <img src="photos/logo.png" alt="Handajun logo" id="logofooter"><br>
         Copyright © 2022 Daniel Radvanyi, Ha Do, Anatoliy Rubanenko, Shen Jun, Haque Imtiazul
       </footer>
+    </div>
+    <!--hero-->
 
-    </div> <!--container-->
-  </div> <!--hero-->
+    <script>
+      //Collapse
+      $('[name="power"]').on("change", function () {
+        if ($(this).val() === "yes") {
+          $("#collapse").collapse("show");
+        } else {
+          $("#collapse").collapse("hide");
+          $("#collapseMode").collapse("hide");
+          $("#collapseAuto").collapse("hide");
+          // set mode buttons as inactive if device is shut off
+          document.getElementById("modebtn1").classList.remove("active");
+          document.getElementById("modebtn2").classList.remove("active");
+        }
+      });
 
+      //Collapse
+      $('[name="mode"]').on("change", function () {
+        if ($(this).val() === "scheduled") {
+          $("#collapseMode").collapse("show");
+          $("#collapseAuto").collapse("hide");
+        } else {
+          $("#collapseMode").collapse("hide");
+          $("#collapseAuto").collapse("show");
+        }
+      });
 
-  <script>
-    let subMenu = document.getElementById("subMenu")
-    function toggleMenu(){
-        subMenu.classList.toggle("open-menu")
-    }
-  </script>
+      //script for revealing feeding time options
+      $(".collapse1").addClass("collapse");
 
- <script>
-    const divInfo = document.querySelector('#infoMachine')
-    let isClick = true;
-    let showOrHide = function(){
-      if(isClick){
-        divInfo.style.display = 'block'
-        isClick = false
-      }else{
-        divInfo.style.display = 'none'
-        isClick = true
+      $("#perselector").change(function () {
+        //hide all elements
+        var selector = "#collapse" + $(this).val();
+        if ($(this).val() === "none") {
+          $("#collapse1").collapse("hide");
+          $("#collapse2").collapse("hide");
+          $("#collapse3").collapse("hide");
+          $("#separator").collapse("hide");
+        } else if ($(this).val() === "1") {
+          $("#collapse1").collapse("show");
+          $("#collapse2").collapse("hide");
+          $("#collapse3").collapse("hide");
+          $("#separator").collapse("show");
+        } else if ($(this).val() === "2") {
+          $("#collapse1").collapse("show");
+          $("#collapse2").collapse("show");
+          $("#collapse3").collapse("hide");
+          $("#separator").collapse("show");
+        } else if ($(this).val() === "3") {
+          $("#collapse1").collapse("show");
+          $("#collapse2").collapse("show");
+          $("#collapse3").collapse("show");
+          $("#separator").collapse("show");
+        }
+      });
+
+      // Drop down menu
+      let subMenu = document.getElementById("subMenu");
+      function toggleMenu() {
+        subMenu.classList.toggle("open-menu");
       }
-      
-    }
- </script>
-</body>
+
+      //Text appearing on info icon click
+      const divInfo = document.querySelector("#infoMachine");
+      let isClick = true;
+      let showOrHide = function () {
+        if (isClick) {
+          divInfo.style.display = "block";
+          isClick = false;
+        } else {
+          divInfo.style.display = "none";
+          isClick = true;
+        }
+      };
+    </script>
+  </body>
 </html>
 
 <!--TODO

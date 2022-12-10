@@ -99,14 +99,6 @@ nav ul li a:focus {
     border: 1px solid #E63946;
     border-radius: 15px;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 1c4eb1f (updated change password-about use and photo for homepage)
-=======
->>>>>>> main
 #infoMachine { 
     display: none;
     background:#A8DADC;
@@ -325,7 +317,7 @@ hr{
 border-color: #E63946;
 border-width: 2px;
 }
-#selected{
+.selected{
     background-color: rgb(226, 226, 226);
 }
 .btn-block{
@@ -398,6 +390,10 @@ border-width: 2px;
     margin-bottom: 7px;
     width: 11px;
 
+}
+.currentID{
+    font-size: 15px;
+    font-style: italic;
 }
 .info:hover{
     width: 13px;
