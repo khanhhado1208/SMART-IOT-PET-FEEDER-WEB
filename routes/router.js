@@ -129,6 +129,7 @@ module.exports = (function() {
 
     /* POST register form */
     router.post("/register", async (req, res) => {
+        console.log("in reg post req: " + req.body.username + ", " + req.body.password)
         crypto.pbkdf2(req.body.password, "saltysalt", 200000, 64, "sha512", async (err, pbkdf2Key) => {
             if (err) throw err;
             if (!(await checkUser(req.body.username))) { //check if username is taken
