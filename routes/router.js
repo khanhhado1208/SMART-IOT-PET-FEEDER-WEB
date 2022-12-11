@@ -10,8 +10,20 @@ module.exports = (function() {
 
     /* MQTT setup */
     const pub_topic = "handajun/"
+    const sub_topic = "handajun/data"
     const address = 'mqtt://public.mqtthq.com:1883'; //public mqtt broker
     const client = mqtt.connect(address);
+
+    client.on("connect", function (err) {
+        client.subscribe(sub_topic);
+        console.log("Server subscribed to mqtt");
+    });
+    client.on("message", async function (topic, message) {
+        const live_data=JSON.parse(message)
+        console.log(live_data)
+        await Readings.updateOne({device_ID:live_data.device_ID}, {weight:live_data.weight}, {upsert:true})
+    });
+
 
     // GET main page
     router.get("/", async (req, res) => {
