@@ -240,10 +240,9 @@ module.exports = (function() {
     async function getReading(device_ID) {
         const query = await Readings.findOne({ device_ID: device_ID })
         if(query!=null){
-            const weight = query.weight;
-            return weight
+            return query.weight
         }
-        return -1;
+        return null;
     }
 
     return router;
