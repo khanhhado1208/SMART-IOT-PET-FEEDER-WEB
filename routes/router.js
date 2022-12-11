@@ -5,6 +5,7 @@ module.exports = (function() {
     const mqtt = require('mqtt');
     const User = require('../models/Users')
     const FeederSetup = require('../models/feeder-setup')
+    const Readings = require('../models/Live-data')
     let session
 
     /* MQTT setup */
@@ -13,10 +14,16 @@ module.exports = (function() {
     const client = mqtt.connect(address);
 
     // GET main page
-    router.get("/", (req, res) => {
+    router.get("/", async (req, res) => {
         const sesh = req.session
         if(sesh.userid){ // if there is an active session with userid
-            res.render("dashboard.ejs", { username: sesh.userid})
+
+            let weight
+            const device = await getDevice(sesh.userid)
+            if(device!=null){
+                weight = await getReading(device)
+            }
+            res.render("dashboard.ejs", { username: sesh.userid, reading: weight})
         }else{
             res.render("home.ejs")
         }
@@ -116,6 +123,18 @@ module.exports = (function() {
         res.redirect("/") //todo: redirect to "changes successfully saved"
     })
 
+    // POST feed now
+    router.post('/feednow', async (req,res) => {
+       // publish on mqtt
+       const user = await User.findOne({username: session.userid});
+       const info="feed"
+       const topic = pub_topic+user.device_ID
+       client.publish(topic, info)
+       console.log(`Send '${info}' to topic '${topic}'`)
+
+        res.redirect("/") //todo: redirect to "changes successfully saved"
+    })
+
     // log out of session
     router.get('/logout',(req,res) => {
         req.session.destroy();
@@ -200,7 +219,20 @@ module.exports = (function() {
         const query = await User.findOne({ username: username })
         const device_ID = query.device_ID;
         return device_ID
-    }    
+    }
+
+    /**
+     * @function getReading
+     * @return {Number} returns amount of food in device's bowl
+     **/
+    async function getReading(device_ID) {
+        const query = await Readings.findOne({ device_ID: device_ID })
+        if(query!=null){
+            const weight = query.weight;
+            return weight
+        }
+        return -1;
+    }
 
     return router;
 })();

@@ -147,10 +147,12 @@
               <div class="status">
                 <div class="row">
                   <div class="column">
-                    <p>Food:</p>
+                    <p>Food: <%= reading %></p>
                   </div>
                   <div class="column">
-                    <button type="submit" class="btn btn-primary">Fill now</button>
+                    <form action="/feednow" method="post">
+                      <button type="submit" class="btn btn-primary">Fill now</button>
+                    </form>
                   </div>
                 </div>
                 <hr>
@@ -270,8 +272,3 @@
     </script>
   </body>
 </html>
-
-<!--TODO
-favicon
-logo fix
--->
