@@ -13,7 +13,17 @@ module.exports = (function() {
     const sub_topic = "handajun/data"
     const address = 'mqtt://public.mqtthq.com:1883'; //public mqtt broker
     const client = mqtt.connect(address);
+    /*
+    * Publish
+    * Typical message:
+    * {"mode":false, "size":"3","times":["07:30","12:00","21:00"]}
+    */
 
+    /*
+    * Subscribe
+    * Typical message:
+    * {"device_ID":"mydevice","weight":999}
+    */
     client.on("connect", function (err) {
         client.subscribe(sub_topic);
         console.log("Server subscribed to mqtt");
@@ -29,7 +39,6 @@ module.exports = (function() {
     router.get("/", async (req, res) => {
         const sesh = req.session
         if(sesh.userid){ // if there is an active session with userid
-
             let weight
             const device = await getDevice(sesh.userid)
             if(device!=null){
@@ -56,7 +65,7 @@ module.exports = (function() {
 
         const sesh = req.session
         if(sesh.userid){ // if there is an active session with userid
-            const device_ID = await getDevice(session.userid)
+            const device_ID = await getDevice(sesh.userid)
             res.render("settings.ejs", { username: sesh.userid, device_ID: device_ID})
         }else{
             res.render("home.ejs")

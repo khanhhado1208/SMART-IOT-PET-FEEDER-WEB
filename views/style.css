@@ -76,6 +76,16 @@ body{
      margin: 0px;
      font-size: 15px;
  }
+ section{
+    background-color: #F1FAEE;
+    border-color: #E63946;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 1px;
+    text-align: left;
+ }
 
   /* ELEMENT CLASSES */
  .btn-block:active{
@@ -97,11 +107,6 @@ body{
  .btn-block:hover{
      background-color: #172b47;
      color: #F1FAEE;
- }
- .btn-block{
-     margin-top: 15px;
-     color: #F1FAEE;
-     background-color: #1D3557;
  }
  .btn-block{
      margin-top: 15px;
@@ -262,16 +267,6 @@ body{
  .row {
    display: flex;
  }
- .section{
-     background-color: #F1FAEE;
-     border-color: #E63946;
-     border-style: solid;
-     border-width: 1px;
-     border-radius: 5px;
-     padding: 10px;
-     margin-bottom: 1px;
-     text-align: left;
- }
  .selected{
      background-color: rgb(226, 226, 226);
  }
@@ -384,6 +379,9 @@ body{
      border: 1px solid #E63946;
      border-radius: 15px;
      font-size: 20px;
+ }
+ #link{
+    color: #E63946;
  }
  #logofooter{
      width: 100px;

@@ -55,6 +55,7 @@ hr{
 }
 #images{
     padding-right: 0px;
+    border-right: #1D3557 5px solid;
 }
 #logofooter{
     width: 100px;

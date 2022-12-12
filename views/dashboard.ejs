@@ -13,7 +13,7 @@
     <div class="hero">
       <header>
         <nav>
-          <img src="photos/logo.png" alt="Handajun logo" class="logo">
+          <a href="/"><img src="photos/logo.png" alt="Handajun logo" class="logo"></a>
           <ul>
             <li><a href="/" id="currentPage">Home</a></li>
             <li><a href="/about">About us</a></li>
@@ -45,7 +45,7 @@
         <h2>Welcome to the Handajun™ pet feeder control panel. Here you can set up a feeding routine for your pet.</h2>
 
         <div id="main">
-          <div class="section">
+          <section>
             <h3>Feeder control</h3>
             <div class="row">
               <div class="column">
@@ -72,17 +72,17 @@
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
 
         <div id="collapseMode" class="panel-collapse collapse">
-          <div class="section">
+          <section>
             <h3>Feeding setup</h3>
 
             <form action="/schedule" method="post">
               <label class="form-label">Feeding per day:</label>
               <select class="form-select" id="perselector" name="perday">
-                <option selected class="selected" value="none">Choose</option>
+                <option selected class="selected" value="0">Choose</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -94,40 +94,40 @@
                 <div class="column">
                   <div id="collapse1" class="panel-collapse collapse">
                     <label class="form-label">Select first feeding time</label>
-                    <input type="time" name="first" class="clock">
+                    <input type="time" name="first" id="first" class="clock">
                   </div>
                 </div>
                 <div class="column">
                   <div id="collapse2" class="panel-collapse collapse">
                     <label class="form-label">Select second feeding time</label>
-                    <input type="time" name="second" class="clock">
+                    <input type="time" name="second" id="second" class="clock">
                   </div>
                 </div>
                 <div class="column">
                   <div id="collapse3" class="panel-collapse collapse">
                     <label class="form-label">Select third feeding time</label>
-                    <input type="time" name="third" class="clock">
+                    <input type="time" name="third" id="third" class="clock">
                   </div>
                 </div>
               </div>
               <hr id="separator" class="panel-collapse collapse">
               <label class="form-label">Portion size:</label>
-              <select class="form-select" name="size">
-                <option selected class="selected">Choose</option>
+              <select class="form-select" id="sizeselector" name="size">
+                <option selected class="selected" value="0">Choose</option>
                 <option value="1">Small</option>
                 <option value="2">Medium</option>
                 <option value="3">Large</option>
               </select>
 
-              <button class="btn btn-dark btn-lg btn-block" type="submit">
+              <button class="btn btn-dark btn-lg btn-block" id="submitRoutine" type="submit">
                 Start routine
               </button>
             </form>
-          </div>
+          </section>
         </div>
 
         <div id="collapseAuto" class="panel-collapse collapse">
-          <div class="section">
+          <section>
             <h3>Automatic feeding</h3>
             <p>In this mode, the feeder will automatically fill the bowl whenever it is empty.</p>
 
@@ -136,10 +136,10 @@
                 Start routine
               </button>
             </form>
-          </div>
+          </section>
         </div>
 
-        <div class="section">
+        <section>
           <h3>Monitoring</h3>
           <div class="row">
             <div class="column">
@@ -185,7 +185,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
       <!--container-->
 
@@ -250,6 +250,74 @@
           $("#separator").collapse("show");
         }
       });
+
+      // Empty form blocker
+      let perValue = $('#perselector').val("0");
+      let sizeValue = $('#sizeselector').val("0");
+      
+      const time1 = document.getElementById("first")
+      const time2 = document.getElementById("second")
+      const time3 = document.getElementById("third")
+
+      $(document).ready(function () {
+        $('#submitRoutine').prop('disabled',true)
+
+        $('.form-select').change(function () {
+          let valid
+          if(sizeValue.val()=="0"){
+            valid=false
+          } else {
+            switch(perValue.val()){
+              case "0":
+                valid = false
+                break;
+              case "1":
+                time1.value == "" ? valid = false : valid = true
+                break;
+              case "2":
+                time1.value == "" || time2.value == "" ? valid = false : valid = true
+                break;
+              case "3":
+                time1.value == "" || time2.value == "" || time3.value == "" ? valid = false : valid = true
+                break;
+            }
+          }
+          if(valid){
+            $('#submitRoutine').prop("disabled", false)
+          } else {
+            $('#submitRoutine').prop("disabled", true)
+          }
+        })
+
+        $('.clock').change(function () {
+          let valid
+          if(sizeValue.val()=="0"){
+            valid=false
+          } else {
+            switch(perValue.val()){
+              case "0":
+                valid = false
+                break;
+              case "1":
+                time1.value == "" ? valid = false : valid = true
+                break;
+              case "2":
+                time1.value == "" || time2.value == "" ? valid = false : valid = true
+                break;
+              case "3":
+                time1.value == "" || time2.value == "" || time3.value == "" ? valid = false : valid = true
+                break;
+            }
+          }
+          if(valid){
+            $('#submitRoutine').prop("disabled", false)
+          } else {
+            $('#submitRoutine').prop("disabled", true)
+          }
+        })
+      });
+
+
 
       // Drop down menu
       let subMenu = document.getElementById("subMenu");

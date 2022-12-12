@@ -13,7 +13,7 @@
     <div class="hero">
       <header>
         <nav>
-          <img src="photos/logo.png" class="logo" alt="Handajun logo">
+          <a href="/"><img src="photos/logo.png" alt="Handajun logo" class="logo"></a>
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/about">About us</a></li>
@@ -43,7 +43,7 @@
       <div class="container">
         <h1>Settings</h1>
         <div id="main">
-          <div class="section">
+          <section>
             <h3>Change password</h3>
             <form action="/settings" method="post">
               <div class="form-outline mb-4">
@@ -56,9 +56,9 @@
                 </button>
               </div>
             </form>
-          </div>
+          </section>
 
-          <div class="section">
+          <section>
             <h3>Add/change device ID</h3>
             <p>You can find your device's unique ID on the bottom of the product.</p>
             <div class="currentID">Current device ID: <%= device_ID %></div>
@@ -73,7 +73,7 @@
                 </button>
               </div>
             </form>
-          </div>
+          </section>
         </div>
         <!--main content-->
       </div>
