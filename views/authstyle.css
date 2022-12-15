@@ -36,9 +36,6 @@ hr{
     padding-left: 5px;
     padding-right: 5px;
 }
-.img-container{
-    margin-top: 10%;
-}
 .img-fluid-set{
     max-width: 100%;
     height: 500px;
@@ -65,7 +62,15 @@ hr{
     color: #F1FAEE;
     background-color: #1D3557;
 }
+#pets{
+    position:absolute;
+    bottom: 0;
+    width: 380px;
+    left:15px;
+ }
 #images{
+    width: 385px;
+    position: relative;
     padding-right: 0px;
     border-right: #1D3557 5px solid;
 }
