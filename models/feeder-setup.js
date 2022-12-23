@@ -14,6 +14,9 @@ const SetupSchema = new mongoose.Schema({
     },
     portionTime: { // Times of feeding (per day)
         type: [String]
+    },
+    currentTime: { // Current time for the Arduino
+        type: String
     }
 })
 

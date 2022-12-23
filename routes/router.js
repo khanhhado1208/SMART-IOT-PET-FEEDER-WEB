@@ -10,7 +10,8 @@ module.exports = (function() {
 
     /* MQTT setup */
     const pub_topic = "handajun/"
-    const sub_topic = "handajun/data"
+    const sub_data_topic = "handajun/data"
+    const sub_time_topic = "handajun/time"
     const address = 'mqtt://public.mqtthq.com:1883'; //public mqtt broker
     const client = mqtt.connect(address);
     /*
@@ -25,13 +26,28 @@ module.exports = (function() {
     * {"device_ID":"mydevice","weight":999}
     */
     client.on("connect", function (err) {
-        client.subscribe(sub_topic);
+        client.subscribe(sub_data_topic);
+        client.subscribe(sub_time_topic);
         console.log("Server subscribed to mqtt");
     });
+
     client.on("message", async function (topic, message) {
-        const live_data=JSON.parse(message)
-        console.log(live_data)
-        await Readings.updateOne({device_ID:live_data.device_ID}, {weight:live_data.weight}, {upsert:true})
+        if(topic == sub_data_topic){
+            const live_data = JSON.parse(message)
+            console.log(live_data)
+            await Readings.updateOne({device_ID:live_data.device_ID}, {weight:live_data.weight}, {upsert:true})
+        }else{
+            const requester = JSON.parse(message)
+            console.log(requester)
+            const topic = pub_topic+requester.requester
+            let date_ob = new Date();
+            let hours = ("0" + (date_ob.getHours())).slice(-2);
+            let minutes = ("0" + (date_ob.getMinutes())).slice(-2);
+            //let minutes = date_ob.getMinutes();
+            let currentTime = hours+":"+minutes
+            client.publish(topic, currentTime)
+            console.log(`Send '${currentTime}' to topic '${topic}'`)
+        }
     });
 
 
@@ -97,7 +113,11 @@ module.exports = (function() {
         if(mode){ // automatic feeding
             await FeederSetup.updateOne({username:session.userid}, {mode:true, portionsize:null, portionTime:[]}, {upsert:true})
         }else{ //scheduled mode
-            await FeederSetup.updateOne({username:session.userid}, {$set: {mode:false, portionSize:size, portionTime:times}}, {upsert:true})
+            let date_ob = new Date();
+            let hours = date_ob.getHours();
+            let minutes = date_ob.getMinutes();
+            let currentTime = hours+":"+minutes
+            await FeederSetup.updateOne({username:session.userid}, {$set: {mode:false, portionSize:size, portionTime:times, currentTime:currentTime}}, {upsert:true})
         }
 
 
